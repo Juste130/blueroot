@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js
+app/.next/
+app/out/
+app/next-env.d.ts
+*.tsbuildinfo
+
+# Foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/*/31337/
+contracts/deployments/31337.json
+contracts/lcov.info
+contracts/coverage/
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Env and secrets: never commit keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Foundry dependencies (pinned in contracts/Makefile, installed with `make deps`)
+contracts/lib/
