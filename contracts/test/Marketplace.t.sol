@@ -35,7 +35,7 @@ contract MarketplaceTest is BaseTest {
         uint256 id = _list(500, PRICE);
 
         assertEq(credit.balanceOf(address(market), tokenId), 500);
-        assertEq(credit.balanceOf(proponent, tokenId), 460);
+        assertEq(credit.balanceOf(proponent, tokenId), 262);
         Marketplace.Listing memory l = market.getListing(id);
         assertEq(l.seller, proponent);
         assertEq(l.amount, 500);
@@ -109,7 +109,7 @@ contract MarketplaceTest is BaseTest {
         emit Marketplace.Cancelled(id, 400);
         vm.prank(proponent);
         market.cancel(id);
-        assertEq(credit.balanceOf(proponent, tokenId), 860);
+        assertEq(credit.balanceOf(proponent, tokenId), 662);
 
         vm.expectRevert(abi.encodeWithSelector(Marketplace.ListingNotFound.selector, id));
         vm.prank(buyer);
@@ -127,7 +127,7 @@ contract MarketplaceTest is BaseTest {
 
         vm.prank(proponent);
         market.cancel(id);
-        assertEq(credit.balanceOf(proponent, tokenId), 960);
+        assertEq(credit.balanceOf(proponent, tokenId), 762);
     }
 
     function test_cancel_unknownListing() public {
@@ -198,7 +198,7 @@ contract MarketplaceTest is BaseTest {
     }
 
     function testFuzz_buy_endToEnd(uint256 amount, uint256 price) public {
-        amount = bound(amount, 1, 960);
+        amount = bound(amount, 1, 762);
         price = bound(price, 1, 10_000e6 / amount);
         uint256 id = _list(amount, price);
 

@@ -1,0 +1,17 @@
+{
+  "name": "blueroot",
+  "private": true,
+  "description": "BlueRoot: proof registry for community blue carbon (mangroves, Benin)",
+  "license": "MIT",
+  "workspaces": [
+    "scripts/satellite"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "satellite": "npm run --workspace @blueroot/satellite",
+    "test": "npm run --workspaces --if-present test",
+    "typecheck": "npm run --workspaces --if-present typecheck"
+  }
+}

@@ -36,6 +36,9 @@ contract Verification is AccessControlDefaultAdminRules, Pausable {
     uint256 public constant MAX_BUFFER_BPS = 5000;
     uint256 public constant MIN_WINDOW = 1 days;
     uint256 public constant MAX_WINDOW = 90 days;
+    /// @dev H3 res-10 cell area depends on latitude/position: ~1.19 ha on the Benin coast (h3-js
+    ///      `cellArea`), 1.5 ha only on global average. The default (119) is rounded DOWN so the registry
+    ///      never over-issues; governance must re-measure it before using another region.
     uint256 public constant MIN_CELL_AREA = 100; // centi-hectares
     uint256 public constant MAX_CELL_AREA = 200;
 
@@ -136,7 +139,7 @@ contract Verification is AccessControlDefaultAdminRules, Pausable {
                 scoreThreshold: 70,
                 bufferBps: 2000,
                 validationWindow: 14 days,
-                cellAreaCentiHa: 150
+                cellAreaCentiHa: 119
             })
         );
     }

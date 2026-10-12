@@ -44,7 +44,8 @@ All contracts are **non-upgradeable** (spec 7.3), use `AccessControlDefaultAdmin
 7. **Claim state machine.** `Pending → Approved → Finalized` or `Pending → Rejected`. Expiry is derived (`deadline`), so no keeper is needed. An expired claim does not block a new one; nothing was issued.
 8. **Quantity enforced on-chain.** `units (0.01 ha-year) = cells × cellArea × years × score / 100`, computed at anchoring and stored in the immutable claim.
 9. **Marketplace never holds funds.** Payment is pulled from the buyer straight to community, treasury and seller. Credits are escrowed, so a listing can always be filled. The community share is rounded **up**: `ceil(a) + floor(b) ≤ ceil(a + b) ≤ total`, so the split can never overflow and the community never gets less than its share.
-10. **Bounded governance.** Every parameter has hard limits in code (approvals 2-7, threshold ≥ 50, buffer 10-50 %, window 1-90 days, fee ≤ 5 %, community ≥ 50 %).
+10. **Real cell area.** `cellAreaCentiHa` defaults to 119: an H3 res-10 cell is ~1.19 ha on the Benin coast (1.5 ha is only the global average). Rounded down so the contract never over-issues. See [satellite.md](satellite.md).
+11. **Bounded governance.** Every parameter has hard limits in code (approvals 2-7, threshold ≥ 50, buffer 10-50 %, window 1-90 days, fee ≤ 5 %, community ≥ 50 %).
 
 ### Deviations from the spec signatures (deliberate)
 

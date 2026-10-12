@@ -1,0 +1,772 @@
+{
+  "generatedAt": "2026-10-12T09:29:40.019Z",
+  "generator": {
+    "name": "@blueroot/satellite",
+    "version": "1.0.0"
+  },
+  "monthly": [
+    {
+      "month": "2023-12",
+      "ndvi": 0.6397,
+      "scenes": 4
+    },
+    {
+      "month": "2024-01",
+      "ndvi": 0.6956,
+      "scenes": 5
+    },
+    {
+      "month": "2024-02",
+      "ndvi": 0.4668,
+      "scenes": 3
+    },
+    {
+      "month": "2024-03",
+      "ndvi": 0.7056,
+      "scenes": 1
+    },
+    {
+      "month": "2024-04",
+      "ndvi": 0.7964,
+      "scenes": 2
+    },
+    {
+      "month": "2024-05",
+      "ndvi": 0.7273,
+      "scenes": 4
+    },
+    {
+      "month": "2024-06",
+      "ndvi": 0.7171,
+      "scenes": 2
+    },
+    {
+      "month": "2024-07",
+      "ndvi": 0.7177,
+      "scenes": 1
+    },
+    {
+      "month": "2024-08",
+      "ndvi": 0.7086,
+      "scenes": 3
+    },
+    {
+      "month": "2024-09",
+      "ndvi": 0.8161,
+      "scenes": 3
+    },
+    {
+      "month": "2024-10",
+      "ndvi": 0.5943,
+      "scenes": 1
+    },
+    {
+      "month": "2024-11",
+      "ndvi": 0.7847,
+      "scenes": 3
+    },
+    {
+      "month": "2024-12",
+      "ndvi": 0.5387,
+      "scenes": 3
+    },
+    {
+      "month": "2025-01",
+      "ndvi": 0.6995,
+      "scenes": 4
+    },
+    {
+      "month": "2025-02",
+      "ndvi": 0.4906,
+      "scenes": 1
+    },
+    {
+      "month": "2025-03",
+      "ndvi": 0.719,
+      "scenes": 2
+    },
+    {
+      "month": "2025-04",
+      "ndvi": 0.7003,
+      "scenes": 2
+    },
+    {
+      "month": "2025-05",
+      "ndvi": 0.72,
+      "scenes": 4
+    },
+    {
+      "month": "2025-06",
+      "ndvi": 0.7604,
+      "scenes": 2
+    },
+    {
+      "month": "2025-07",
+      "ndvi": 0.9658,
+      "scenes": 1
+    },
+    {
+      "month": "2025-08",
+      "ndvi": 0.7135,
+      "scenes": 2
+    },
+    {
+      "month": "2025-09",
+      "ndvi": 0.8383,
+      "scenes": 3
+    },
+    {
+      "month": "2025-10",
+      "ndvi": 0.8217,
+      "scenes": 1
+    },
+    {
+      "month": "2025-11",
+      "ndvi": 0.7991,
+      "scenes": 2
+    },
+    {
+      "month": "2025-12",
+      "ndvi": 0.6533,
+      "scenes": 2
+    },
+    {
+      "month": "2026-02",
+      "ndvi": 0.5578,
+      "scenes": 1
+    },
+    {
+      "month": "2026-03",
+      "ndvi": 0.7376,
+      "scenes": 2
+    },
+    {
+      "month": "2026-04",
+      "ndvi": 0.7592,
+      "scenes": 3
+    },
+    {
+      "month": "2026-05",
+      "ndvi": 0.765,
+      "scenes": 4
+    },
+    {
+      "month": "2026-07",
+      "ndvi": 0.7904,
+      "scenes": 1
+    },
+    {
+      "month": "2026-08",
+      "ndvi": 0.658,
+      "scenes": 2
+    },
+    {
+      "month": "2026-09",
+      "ndvi": 0.7128,
+      "scenes": 1
+    }
+  ],
+  "observations": [
+    {
+      "date": "2023-12-09",
+      "meanNdvi": 0.7785,
+      "sceneId": "S2A_T31NCG_20231209T102000_L2A",
+      "validFraction": 0.854,
+      "validPixels": 1630
+    },
+    {
+      "date": "2023-12-19",
+      "meanNdvi": 0.628,
+      "sceneId": "S2A_T31NCH_20231219T102022_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2023-12-24",
+      "meanNdvi": 0.6454,
+      "sceneId": "S2B_T31NCH_20231224T102819_L2A",
+      "validFraction": 0.971,
+      "validPixels": 1853
+    },
+    {
+      "date": "2023-12-29",
+      "meanNdvi": 0.634,
+      "sceneId": "S2A_T31NCH_20231229T102020_L2A",
+      "validFraction": 0.619,
+      "validPixels": 1182
+    },
+    {
+      "date": "2024-01-03",
+      "meanNdvi": 0.6956,
+      "sceneId": "S2B_T31NCG_20240103T102124_L2A",
+      "validFraction": 0.971,
+      "validPixels": 1853
+    },
+    {
+      "date": "2024-01-08",
+      "meanNdvi": 0.7946,
+      "sceneId": "S2A_T31NCG_20240108T101958_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2024-01-13",
+      "meanNdvi": 0.5038,
+      "sceneId": "S2B_T31NCH_20240113T102057_L2A",
+      "validFraction": 0.574,
+      "validPixels": 1095
+    },
+    {
+      "date": "2024-01-23",
+      "meanNdvi": 0.7932,
+      "sceneId": "S2B_T31NCG_20240123T102022_L2A",
+      "validFraction": 0.714,
+      "validPixels": 1363
+    },
+    {
+      "date": "2024-01-28",
+      "meanNdvi": 0.5058,
+      "sceneId": "S2A_T31NCH_20240128T101957_L2A",
+      "validFraction": 0.737,
+      "validPixels": 1406
+    },
+    {
+      "date": "2024-02-07",
+      "meanNdvi": 0.4668,
+      "sceneId": "S2A_T31NCG_20240207T101904_L2A",
+      "validFraction": 0.808,
+      "validPixels": 1541
+    },
+    {
+      "date": "2024-02-12",
+      "meanNdvi": 0.4831,
+      "sceneId": "S2B_T31NCG_20240212T101833_L2A",
+      "validFraction": 0.808,
+      "validPixels": 1541
+    },
+    {
+      "date": "2024-02-17",
+      "meanNdvi": 0.4666,
+      "sceneId": "S2A_T31NCH_20240217T101803_L2A",
+      "validFraction": 0.521,
+      "validPixels": 995
+    },
+    {
+      "date": "2024-03-18",
+      "meanNdvi": 0.7056,
+      "sceneId": "S2A_T31NCG_20240318T102712_L2A",
+      "validFraction": 0.976,
+      "validPixels": 1862
+    },
+    {
+      "date": "2024-04-07",
+      "meanNdvi": 0.7021,
+      "sceneId": "S2A_T31NCG_20240407T102553_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2024-04-12",
+      "meanNdvi": 0.8907,
+      "sceneId": "S2B_T31NCG_20240412T102056_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2024-05-02",
+      "meanNdvi": 0.7284,
+      "sceneId": "S2B_T31NCH_20240502T102316_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2024-05-12",
+      "meanNdvi": 0.7263,
+      "sceneId": "S2B_T31NCG_20240512T101813_L2A",
+      "validFraction": 0.976,
+      "validPixels": 1862
+    },
+    {
+      "date": "2024-05-17",
+      "meanNdvi": 0.6268,
+      "sceneId": "S2A_T31NCG_20240517T102243_L2A",
+      "validFraction": 0.976,
+      "validPixels": 1862
+    },
+    {
+      "date": "2024-05-27",
+      "meanNdvi": 0.7559,
+      "sceneId": "S2A_T31NCH_20240527T102046_L2A",
+      "validFraction": 0.98,
+      "validPixels": 1870
+    },
+    {
+      "date": "2024-06-01",
+      "meanNdvi": 0.7689,
+      "sceneId": "S2B_T31NCH_20240601T102537_L2A",
+      "validFraction": 0.98,
+      "validPixels": 1870
+    },
+    {
+      "date": "2024-06-06",
+      "meanNdvi": 0.6652,
+      "sceneId": "S2A_T31NCG_20240606T102828_L2A",
+      "validFraction": 0.98,
+      "validPixels": 1869
+    },
+    {
+      "date": "2024-07-01",
+      "meanNdvi": 0.7177,
+      "sceneId": "S2B_T31NCH_20240701T102330_L2A",
+      "validFraction": 0.973,
+      "validPixels": 1857
+    },
+    {
+      "date": "2024-08-05",
+      "meanNdvi": 0.7086,
+      "sceneId": "S2A_T31NCG_20240805T102314_L2A",
+      "validFraction": 0.973,
+      "validPixels": 1857
+    },
+    {
+      "date": "2024-08-10",
+      "meanNdvi": 0.8025,
+      "sceneId": "S2B_T31NCG_20240810T101748_L2A",
+      "validFraction": 0.976,
+      "validPixels": 1862
+    },
+    {
+      "date": "2024-08-15",
+      "meanNdvi": 0.5428,
+      "sceneId": "S2A_T31NCG_20240815T101737_L2A",
+      "validFraction": 0.901,
+      "validPixels": 1719
+    },
+    {
+      "date": "2024-09-04",
+      "meanNdvi": 0.8161,
+      "sceneId": "S2A_T31NCG_20240904T102750_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2024-09-09",
+      "meanNdvi": 0.8165,
+      "sceneId": "S2B_T31NCG_20240909T102129_L2A",
+      "validFraction": 0.978,
+      "validPixels": 1866
+    },
+    {
+      "date": "2024-09-24",
+      "meanNdvi": 0.7382,
+      "sceneId": "S2A_T31NCG_20240924T102721_L2A",
+      "validFraction": 0.581,
+      "validPixels": 1108
+    },
+    {
+      "date": "2024-10-24",
+      "meanNdvi": 0.5943,
+      "sceneId": "S2A_T31NCG_20241024T101805_L2A",
+      "validFraction": 0.531,
+      "validPixels": 1013
+    },
+    {
+      "date": "2024-11-03",
+      "meanNdvi": 0.8525,
+      "sceneId": "S2A_T31NCG_20241103T101903_L2A",
+      "validFraction": 0.897,
+      "validPixels": 1711
+    },
+    {
+      "date": "2024-11-13",
+      "meanNdvi": 0.7847,
+      "sceneId": "S2A_T31NCG_20241113T102626_L2A",
+      "validFraction": 0.887,
+      "validPixels": 1693
+    },
+    {
+      "date": "2024-11-23",
+      "meanNdvi": 0.4452,
+      "sceneId": "S2A_T31NCH_20241123T102015_L2A",
+      "validFraction": 0.869,
+      "validPixels": 1658
+    },
+    {
+      "date": "2024-12-08",
+      "meanNdvi": 0.6533,
+      "sceneId": "S2B_T31NCH_20241208T102400_L2A",
+      "validFraction": 0.973,
+      "validPixels": 1857
+    },
+    {
+      "date": "2024-12-18",
+      "meanNdvi": 0.5122,
+      "sceneId": "S2B_T31NCH_20241218T102741_L2A",
+      "validFraction": 0.808,
+      "validPixels": 1541
+    },
+    {
+      "date": "2024-12-23",
+      "meanNdvi": 0.5387,
+      "sceneId": "S2A_T31NCG_20241223T102027_L2A",
+      "validFraction": 0.808,
+      "validPixels": 1541
+    },
+    {
+      "date": "2025-01-02",
+      "meanNdvi": 0.6875,
+      "sceneId": "S2A_T31NCG_20250102T102606_L2A",
+      "validFraction": 0.963,
+      "validPixels": 1837
+    },
+    {
+      "date": "2025-01-07",
+      "meanNdvi": 0.7115,
+      "sceneId": "S2B_T31NCG_20250107T102657_L2A",
+      "validFraction": 0.904,
+      "validPixels": 1725
+    },
+    {
+      "date": "2025-01-12",
+      "meanNdvi": 0.7175,
+      "sceneId": "S2A_T31NCH_20250112T102017_L2A",
+      "validFraction": 0.803,
+      "validPixels": 1533
+    },
+    {
+      "date": "2025-01-27",
+      "meanNdvi": 0.6693,
+      "sceneId": "S2B_T31NCG_20250127T102332_L2A",
+      "validFraction": 0.952,
+      "validPixels": 1817
+    },
+    {
+      "date": "2025-02-16",
+      "meanNdvi": 0.4906,
+      "sceneId": "S2B_T31NCH_20250216T102110_L2A",
+      "validFraction": 0.76,
+      "validPixels": 1450
+    },
+    {
+      "date": "2025-03-15",
+      "meanNdvi": 0.6687,
+      "sceneId": "S2A_T31NCG_20250315T102553_L2A",
+      "validFraction": 0.971,
+      "validPixels": 1853
+    },
+    {
+      "date": "2025-03-28",
+      "meanNdvi": 0.7692,
+      "sceneId": "S2B_T31NCG_20250328T102752_L2A",
+      "validFraction": 0.972,
+      "validPixels": 1854
+    },
+    {
+      "date": "2025-04-12",
+      "meanNdvi": 0.6953,
+      "sceneId": "S2C_T31NCH_20250412T102704_L2A",
+      "validFraction": 0.973,
+      "validPixels": 1857
+    },
+    {
+      "date": "2025-04-24",
+      "meanNdvi": 0.7052,
+      "sceneId": "S2A_T31NCG_20250424T102555_L2A",
+      "validFraction": 0.939,
+      "validPixels": 1792
+    },
+    {
+      "date": "2025-05-07",
+      "meanNdvi": 0.6469,
+      "sceneId": "S2B_T31NCG_20250507T101753_L2A",
+      "validFraction": 0.968,
+      "validPixels": 1847
+    },
+    {
+      "date": "2025-05-12",
+      "meanNdvi": 0.7611,
+      "sceneId": "S2C_T31NCG_20250512T102344_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2025-05-14",
+      "meanNdvi": 0.7774,
+      "sceneId": "S2A_T31NCG_20250514T102555_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2025-05-22",
+      "meanNdvi": 0.6788,
+      "sceneId": "S2C_T31NCG_20250522T102154_L2A",
+      "validFraction": 0.98,
+      "validPixels": 1870
+    },
+    {
+      "date": "2025-06-03",
+      "meanNdvi": 0.7567,
+      "sceneId": "S2A_T31NCG_20250603T102557_L2A",
+      "validFraction": 0.687,
+      "validPixels": 1310
+    },
+    {
+      "date": "2025-06-13",
+      "meanNdvi": 0.764,
+      "sceneId": "S2A_T31NCG_20250613T102334_L2A",
+      "validFraction": 0.852,
+      "validPixels": 1626
+    },
+    {
+      "date": "2025-07-26",
+      "meanNdvi": 0.9658,
+      "sceneId": "S2B_T31NCG_20250726T102813_L2A",
+      "validFraction": 0.966,
+      "validPixels": 1844
+    },
+    {
+      "date": "2025-08-02",
+      "meanNdvi": 0.5705,
+      "sceneId": "S2A_T31NCH_20250802T102557_L2A",
+      "validFraction": 0.971,
+      "validPixels": 1853
+    },
+    {
+      "date": "2025-08-20",
+      "meanNdvi": 0.8564,
+      "sceneId": "S2C_T31NCG_20250820T102704_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2025-09-01",
+      "meanNdvi": 0.8383,
+      "sceneId": "S2A_T31NCG_20250901T102818_L2A",
+      "validFraction": 0.973,
+      "validPixels": 1857
+    },
+    {
+      "date": "2025-09-04",
+      "meanNdvi": 0.8415,
+      "sceneId": "S2B_T31NCG_20250904T102814_L2A",
+      "validFraction": 0.972,
+      "validPixels": 1854
+    },
+    {
+      "date": "2025-09-11",
+      "meanNdvi": 0.8305,
+      "sceneId": "S2A_T31NCG_20250911T102639_L2A",
+      "validFraction": 0.971,
+      "validPixels": 1853
+    },
+    {
+      "date": "2025-10-21",
+      "meanNdvi": 0.8217,
+      "sceneId": "S2A_T31NCG_20251021T102556_L2A",
+      "validFraction": 0.976,
+      "validPixels": 1862
+    },
+    {
+      "date": "2025-11-10",
+      "meanNdvi": 0.8238,
+      "sceneId": "S2A_T31NCG_20251110T102732_L2A",
+      "validFraction": 0.969,
+      "validPixels": 1849
+    },
+    {
+      "date": "2025-11-30",
+      "meanNdvi": 0.7743,
+      "sceneId": "S2A_T31NCG_20251130T102752_L2A",
+      "validFraction": 0.619,
+      "validPixels": 1182
+    },
+    {
+      "date": "2025-12-10",
+      "meanNdvi": 0.8055,
+      "sceneId": "S2A_T31NCG_20251210T102734_L2A",
+      "validFraction": 0.873,
+      "validPixels": 1666
+    },
+    {
+      "date": "2025-12-20",
+      "meanNdvi": 0.501,
+      "sceneId": "S2A_T31NCH_20251220T102557_L2A",
+      "validFraction": 0.768,
+      "validPixels": 1465
+    },
+    {
+      "date": "2026-02-26",
+      "meanNdvi": 0.5578,
+      "sceneId": "S2C_T31NCG_20260226T102245_L2A",
+      "validFraction": 0.808,
+      "validPixels": 1541
+    },
+    {
+      "date": "2026-03-18",
+      "meanNdvi": 0.7224,
+      "sceneId": "S2C_T31NCG_20260318T102015_L2A",
+      "validFraction": 0.826,
+      "validPixels": 1576
+    },
+    {
+      "date": "2026-03-20",
+      "meanNdvi": 0.7528,
+      "sceneId": "S2A_T31NCG_20260320T102602_L2A",
+      "validFraction": 0.974,
+      "validPixels": 1858
+    },
+    {
+      "date": "2026-04-12",
+      "meanNdvi": 0.703,
+      "sceneId": "S2B_T31NCG_20260412T102121_L2A",
+      "validFraction": 0.7,
+      "validPixels": 1336
+    },
+    {
+      "date": "2026-04-17",
+      "meanNdvi": 0.7592,
+      "sceneId": "S2C_T31NCG_20260417T102641_L2A",
+      "validFraction": 0.975,
+      "validPixels": 1861
+    },
+    {
+      "date": "2026-04-22",
+      "meanNdvi": 0.8099,
+      "sceneId": "S2B_T31NCG_20260422T102137_L2A",
+      "validFraction": 0.971,
+      "validPixels": 1853
+    },
+    {
+      "date": "2026-05-02",
+      "meanNdvi": 0.7885,
+      "sceneId": "S2B_T31NCG_20260502T102717_L2A",
+      "validFraction": 0.975,
+      "validPixels": 1861
+    },
+    {
+      "date": "2026-05-12",
+      "meanNdvi": 0.7776,
+      "sceneId": "S2B_T31NCG_20260512T102432_L2A",
+      "validFraction": 0.978,
+      "validPixels": 1866
+    },
+    {
+      "date": "2026-05-27",
+      "meanNdvi": 0.7147,
+      "sceneId": "S2C_T31NCH_20260527T102537_L2A",
+      "validFraction": 0.98,
+      "validPixels": 1869
+    },
+    {
+      "date": "2026-05-29",
+      "meanNdvi": 0.7523,
+      "sceneId": "S2A_T31NCG_20260529T102346_L2A",
+      "validFraction": 0.978,
+      "validPixels": 1866
+    },
+    {
+      "date": "2026-07-21",
+      "meanNdvi": 0.7904,
+      "sceneId": "S2B_T31NCG_20260721T102425_L2A",
+      "validFraction": 0.819,
+      "validPixels": 1562
+    },
+    {
+      "date": "2026-08-17",
+      "meanNdvi": 0.6651,
+      "sceneId": "S2A_T31NCG_20260817T102555_L2A",
+      "validFraction": 0.976,
+      "validPixels": 1862
+    },
+    {
+      "date": "2026-08-25",
+      "meanNdvi": 0.6508,
+      "sceneId": "S2C_T31NCG_20260825T102823_L2A",
+      "validFraction": 0.748,
+      "validPixels": 1427
+    },
+    {
+      "date": "2026-09-19",
+      "meanNdvi": 0.7128,
+      "sceneId": "S2B_T31NCG_20260919T102103_L2A",
+      "validFraction": 0.916,
+      "validPixels": 1747
+    }
+  ],
+  "parameters": {
+    "aggregation": "monthly-median",
+    "baselineWindow": {
+      "from": "2024-03",
+      "to": "2024-05"
+    },
+    "latestWindow": {
+      "from": "2026-03",
+      "to": "2026-05"
+    },
+    "maxCloudCover": 60,
+    "minValidFraction": 0.5,
+    "period": {
+      "from": "2023-12-01",
+      "to": "2026-09-30"
+    },
+    "sclValidClasses": [
+      4,
+      5,
+      7
+    ],
+    "scoring": {
+      "levelFloor": 0.2,
+      "levelFull": 0.6,
+      "levelWeight": 0.6,
+      "trendFull": 0.1,
+      "trendWeight": 0.4
+    }
+  },
+  "schemaVersion": "blueroot.ndvi/1",
+  "source": {
+    "bands": {
+      "mask": "SCL (scene classification)",
+      "nir": "B08 (nir)",
+      "red": "B04 (red)"
+    },
+    "collection": "sentinel-2-c1-l2a",
+    "license": "Contains modified Copernicus Sentinel data (free, full and open access)",
+    "provider": "Element84 Earth Search (AWS Open Data)",
+    "stacApi": "https://earth-search.aws.element84.com/v1"
+  },
+  "summary": {
+    "baselineNdvi": 0.7273,
+    "delta": 0.0319,
+    "latestNdvi": 0.7592,
+    "levelScore": 100,
+    "satelliteScore": 86,
+    "scenesAccepted": 75,
+    "scenesConsidered": 139,
+    "scenesFailed": 0,
+    "trendScore": 66
+  },
+  "zone": {
+    "areaHa": 19.08,
+    "cells": [
+      "8a5890aa8817fff",
+      "8a5890aa8887fff",
+      "8a5890aa88affff",
+      "8a5890aa88b7fff",
+      "8a5890aa88c7fff",
+      "8a5890aa88e7fff",
+      "8a5890aa88f7fff",
+      "8a5890aa898ffff",
+      "8a5890aa8997fff",
+      "8a5890aa899ffff",
+      "8a5890aa89b7fff",
+      "8a5890aa8d47fff",
+      "8a5890aa8d4ffff",
+      "8a5890aa8d67fff",
+      "8a5890aa8d6ffff",
+      "8a5890aac6dffff"
+    ],
+    "h3Resolution": 10,
+    "id": "gnigbohoue-grand-popo",
+    "name": "Gnigbohoué, Kpêko (Grand-Popo)"
+  }
+}

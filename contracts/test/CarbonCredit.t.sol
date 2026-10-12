@@ -36,7 +36,7 @@ contract CarbonCreditTest is BaseTest {
         vm.expectRevert(CarbonCredit.BufferLocked.selector);
         credit.retire(tokenId, 1, buyer, bytes32(0));
         vm.stopPrank();
-        assertEq(credit.bufferOf(tokenId), 240);
+        assertEq(credit.bufferOf(tokenId), 190);
     }
 
     function test_retire_burnsAndEmitsCertificate() public {
@@ -48,14 +48,14 @@ contract CarbonCreditTest is BaseTest {
         uint256 retirementId = credit.retire(tokenId, 100, buyer, reason);
 
         assertEq(retirementId, 1);
-        assertEq(credit.balanceOf(proponent, tokenId), 860);
+        assertEq(credit.balanceOf(proponent, tokenId), 662);
         assertEq(credit.totalRetired(tokenId), 100);
-        assertEq(credit.totalIssued(tokenId), 1200);
+        assertEq(credit.totalIssued(tokenId), 952);
     }
 
     function test_retire_cannotExceedBalanceOrBeRepeated() public {
         vm.startPrank(proponent);
-        credit.retire(tokenId, 960, buyer, bytes32(0));
+        credit.retire(tokenId, 762, buyer, bytes32(0));
         vm.expectRevert(
             abi.encodeWithSelector(
                 IERC1155Errors.ERC1155InsufficientBalance.selector, proponent, 0, 1, tokenId
@@ -119,11 +119,11 @@ contract CarbonCreditTest is BaseTest {
     }
 
     function testFuzz_retiredCreditsAreGone(uint256 amount, uint256 moveAfter) public {
-        amount = bound(amount, 1, 960);
-        moveAfter = bound(moveAfter, 1, 960);
+        amount = bound(amount, 1, 762);
+        moveAfter = bound(moveAfter, 1, 762);
         vm.startPrank(proponent);
         credit.retire(tokenId, amount, buyer, bytes32(0));
-        uint256 left = 960 - amount;
+        uint256 left = 762 - amount;
         if (moveAfter > left) {
             vm.expectRevert(
                 abi.encodeWithSelector(

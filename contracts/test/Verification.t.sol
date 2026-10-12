@@ -23,12 +23,12 @@ contract VerificationTest is BaseTest {
     function test_anchorReport_storesImmutableClaim() public {
         uint256 end = START + 365 days;
         vm.expectEmit(address(verification));
-        emit Verification.ReportAnchored(1, projectId, REPORT, SATELLITE, 80, START, end, 1200, end + 14 days);
+        emit Verification.ReportAnchored(1, projectId, REPORT, SATELLITE, 80, START, end, 952, end + 14 days);
         uint256 claimId = anchorClaim(projectId, 80, START, end);
 
         Verification.Claim memory c = verification.getClaim(claimId);
         assertEq(c.projectId, projectId);
-        assertEq(c.quantity, 1200); // 10 cells * 150 * 1 year * 0.80
+        assertEq(c.quantity, 952); // 10 cells * 119 * 1 year * 0.80
         assertEq(c.score, 80);
         assertEq(c.reportHash, REPORT);
         assertEq(c.satelliteHash, SATELLITE);
@@ -94,7 +94,7 @@ contract VerificationTest is BaseTest {
     }
 
     function test_anchorReport_rejectsTinyQuantity() public {
-        // 10 cells * 150 * 60s * 70 / (365 days * 100) rounds down to 0
+        // 10 cells * 119 * 60s * 70 / (365 days * 100) rounds down to 0
         vm.expectRevert(Verification.QuantityIsZero.selector);
         anchorClaim(projectId, 70, START, START + 60);
     }
@@ -239,13 +239,13 @@ contract VerificationTest is BaseTest {
         uint256 tokenId = (projectId << 16) | 2027;
 
         vm.expectEmit(address(verification));
-        emit Verification.ClaimFinalized(claimId, projectId, tokenId, 960, 240);
+        emit Verification.ClaimFinalized(claimId, projectId, tokenId, 762, 190);
         vm.prank(buyer); // permissionless
         verification.finalize(claimId);
 
-        assertEq(credit.balanceOf(proponent, tokenId), 960);
-        assertEq(credit.bufferOf(tokenId), 240);
-        assertEq(credit.totalIssued(tokenId), 1200);
+        assertEq(credit.balanceOf(proponent, tokenId), 762);
+        assertEq(credit.bufferOf(tokenId), 190);
+        assertEq(credit.totalIssued(tokenId), 952);
         assertEq(verification.openClaimOf(projectId), 0);
     }
 
@@ -341,7 +341,7 @@ contract VerificationTest is BaseTest {
         score = bound(score, 70, 100);
         duration = bound(duration, 1 days, 365 days);
         uint256 claimId = anchorClaim(projectId, score, START, START + duration);
-        uint256 expected = 10 * 150 * duration * score / (365 days * 100);
+        uint256 expected = 10 * 119 * duration * score / (365 days * 100);
         assertEq(verification.getClaim(claimId).quantity, expected);
 
         approveTwice(claimId);

@@ -112,7 +112,7 @@ abstract contract BaseTest is Test {
     }
 
     /// @dev Registers a 10-cell project, runs one full year claim with score 80 and finalizes it.
-    ///      Expected issuance: 10 * 150 * 1 year * 80 / 100 = 1200 units (240 buffer, 960 net).
+    ///      Expected issuance: 10 * 119 * 1 year * 80 / 100 = 952 units (190 buffer, 762 net).
     function issuedProject() internal returns (uint256 projectId, uint256 claimId, uint256 tokenId) {
         projectId = registerWithCells(proponent, 0, 10);
         vm.warp(START + 365 days);

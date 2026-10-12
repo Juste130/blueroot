@@ -1,0 +1,27 @@
+name: satellite
+
+on:
+  push:
+    branches: [main]
+    paths: ["scripts/satellite/**", "package.json", "package-lock.json", ".github/workflows/satellite.yml"]
+  pull_request:
+    paths: ["scripts/satellite/**", "package.json", "package-lock.json", ".github/workflows/satellite.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run satellite typecheck
+      - run: npm run satellite test
+      - name: Verify committed NDVI files (schema, canonical form, hash)
+        working-directory: scripts/satellite
+        run: npx tsx src/cli.ts verify data/*/ndvi-v1.json
