@@ -6,6 +6,8 @@ node_modules/
 app/.next/
 app/out/
 app/next-env.d.ts
+# Local development stores (evidence photos, documents) when Pinata is not configured
+app/.data/
 *.tsbuildinfo
 
 # Foundry

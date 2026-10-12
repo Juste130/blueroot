@@ -4,13 +4,15 @@
   "description": "BlueRoot: proof registry for community blue carbon (mangroves, Benin)",
   "license": "MIT",
   "workspaces": [
-    "scripts/satellite"
+    "scripts/satellite",
+    "app"
   ],
   "engines": {
     "node": ">=20.11"
   },
   "scripts": {
     "satellite": "npm run --workspace @blueroot/satellite",
+    "app": "npm run --workspace @blueroot/app",
     "test": "npm run --workspaces --if-present test",
     "typecheck": "npm run --workspaces --if-present typecheck"
   }

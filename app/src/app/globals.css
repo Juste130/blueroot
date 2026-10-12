@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* Design tokens: see docs/design.md. Gold is reserved for "anchored on-chain". */
+@theme {
+  --color-tide: #0b3c5d;
+  --color-tide-soft: #2c5876;
+  --color-mangrove: #3fb37f;
+  --color-mangrove-ink: #1e7a50;
+  --color-lagoon: #6ec6e8;
+  --color-lagoon-ink: #1b6e8f;
+  --color-gold: #f2c14e;
+  --color-gold-ink: #8a6410;
+  --color-roots: #c9e4de;
+  --color-danger: #b4412f;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Scale 1.25 from 16 px. */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.45;
+  --text-base: 1rem;
+  --text-base--line-height: 1.55;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.4;
+  --text-xl: 1.5625rem;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 1.9375rem;
+  --text-2xl--line-height: 1.15;
+  --text-3xl: 2.4375rem;
+  --text-3xl--line-height: 1.08;
+  --text-4xl: 3.0625rem;
+  --text-4xl--line-height: 1.02;
+
+  --radius-chip: 4px;
+  --radius-control: 8px;
+  --radius-panel: 12px;
+}
+
+/* Semantic surfaces, swapped by the dark theme. */
+:root {
+  --paper: #f5f9f8;
+  --surface: #ffffff;
+  --ink: #0b3c5d;
+  --muted: #4a6b80;
+  --line: #d5e6e1;
+  --focus: #1b6e8f;
+  --ok: #1e7a50;
+  --data: #1b6e8f;
+  --anchor: #8a6410;
+  --bad: #b4412f;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #071f30;
+    --surface: #0c2c42;
+    --ink: #e8f3f0;
+    --muted: #9fbccb;
+    --line: #1e4660;
+    --focus: #6ec6e8;
+    --ok: #5fd39c;
+    --data: #8fd6f0;
+    --anchor: #f2c14e;
+    --bad: #f0907c;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-ok: var(--ok);
+  --color-data: var(--data);
+  --color-anchor: var(--anchor);
+  --color-bad: var(--bad);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--color-roots);
+    color: var(--color-tide);
+  }
+}
+
+@layer utilities {
+  /* Figures that line up in columns; slashed zero keeps hashes unambiguous without a monospace face. */
+  .figures {
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+  .measure {
+    max-width: 68ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* MapLibre controls follow the palette. */
+.maplibregl-ctrl-group {
+  border-radius: var(--radius-control) !important;
+  box-shadow: 0 0 0 1px var(--line) !important;
+}
+.maplibregl-ctrl-attrib {
+  font-size: 11px;
+}
