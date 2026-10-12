@@ -1,0 +1,35 @@
+name: app
+
+on:
+  push:
+    branches: [main]
+    paths: ["app/**", "scripts/satellite/**", "contracts/src/**", "package-lock.json", ".github/workflows/app.yml"]
+  pull_request:
+    paths: ["app/**", "scripts/satellite/**", "contracts/src/**", "package-lock.json", ".github/workflows/app.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run app typecheck
+      - name: Lint
+        run: npm run app lint
+      - name: Unit tests
+        run: npm run app test
+      - name: Production dependencies audit
+        run: npm audit --omit=dev --audit-level=high
+      - name: Build
+        run: npm run app build
+        env:
+          NEXT_PUBLIC_CHAIN_ID: "84532"
+          SESSION_SECRET: ci-only-session-secret-0123456789abcdef
