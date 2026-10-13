@@ -11,6 +11,8 @@
     "node": ">=20.11"
   },
   "scripts": {
+    "dev": "npm run --workspace @blueroot/app dev",
+    "build": "npm run --workspace @blueroot/app build",
     "satellite": "npm run --workspace @blueroot/satellite",
     "app": "npm run --workspace @blueroot/app",
     "test": "npm run --workspaces --if-present test",
