@@ -1,5 +1,5 @@
 import { type Address, type Chain, defineChain, keccak256, toHex } from "viem";
-import { baseSepolia, foundry } from "viem/chains";
+import { baseSepolia, foundry, polygonAmoy } from "viem/chains";
 import { z } from "zod";
 
 /** Addresses written by contracts/script/Deploy.s.sol into deployments/<chainId>.json. */
@@ -18,13 +18,14 @@ export type Deployment = {
   [K in keyof z.infer<typeof DeploymentSchema>]: K extends "chainId" | "startBlock" ? number : Address;
 };
 
-const SUPPORTED: Record<number, Chain> = { [baseSepolia.id]: baseSepolia, [foundry.id]: foundry };
+/** Testnets only (spec 10.6). The app is chain-agnostic: pick one with NEXT_PUBLIC_CHAIN_ID. */
+const SUPPORTED: Record<number, Chain> = { [baseSepolia.id]: baseSepolia, [polygonAmoy.id]: polygonAmoy, [foundry.id]: foundry };
 
 export const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? baseSepolia.id);
 
 export const chain: Chain = (() => {
   const known = SUPPORTED[CHAIN_ID];
-  if (!known) throw new Error(`Unsupported NEXT_PUBLIC_CHAIN_ID ${CHAIN_ID} (use 84532 or 31337)`);
+  if (!known) throw new Error(`Unsupported NEXT_PUBLIC_CHAIN_ID ${CHAIN_ID} (use 84532, 80002 or 31337)`);
   const rpc = process.env.NEXT_PUBLIC_RPC_URL;
   return rpc ? defineChain({ ...known, rpcUrls: { default: { http: [rpc] } } }) : known;
 })();

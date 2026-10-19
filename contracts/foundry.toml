@@ -42,9 +42,12 @@ sort_imports = true
 
 [rpc_endpoints]
 base_sepolia = "${BASE_SEPOLIA_RPC_URL}"
+polygon_amoy = "${POLYGON_AMOY_RPC_URL}"
 
 [etherscan]
 base_sepolia = { key = "${BASESCAN_API_KEY}", chain = 84532 }
+# Etherscan V2: one key works for every supported chain, Amoy included.
+polygon_amoy = { key = "${ETHERSCAN_API_KEY}", chain = 80002 }
 
 [lint]
 # Time windows are days long; the few seconds a block producer can shift block.timestamp are irrelevant.

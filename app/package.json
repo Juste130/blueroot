@@ -15,7 +15,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "abi": "node scripts/gen-abi.mjs",
-    "demo": "node scripts/demo.ts"
+    "demo": "node scripts/demo.ts",
+    "api-check": "node scripts/api-check.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.133.0",

@@ -1,6 +1,7 @@
 import "server-only";
 
 import Anthropic from "@anthropic-ai/sdk";
+import { ApiError } from "../api";
 import { type AiAssessment, AiAssessmentSchema } from "./schema";
 
 export const PROMPT_VERSION = "blueroot-verify/1";
@@ -61,7 +62,7 @@ export class AssessmentRejectedError extends Error {}
  */
 export async function assess(file: unknown): Promise<{ assessment: AiAssessment; model: string }> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is not configured");
+  if (!apiKey) throw new ApiError(503, "ai_unavailable", "ANTHROPIC_API_KEY is not configured");
   const client = new Anthropic({ apiKey, timeout: 60_000, maxRetries: 2 });
   const response = await client.messages.create({
     model: process.env.ANTHROPIC_MODEL ?? DEFAULT_MODEL,

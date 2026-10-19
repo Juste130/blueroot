@@ -379,6 +379,7 @@
       "rate_limited": "Quota reached for today: three reports per project per day.",
       "ai_output_rejected": "The AI answer did not match the expected format and was rejected. Try again.",
       "anchoring_unavailable": "The anchoring service is not configured on this server.",
+      "ai_unavailable": "AI analysis is not configured on this server.",
       "invalid_token": "This report has expired. Generate a new one.",
       "unknown": "The operation failed. Try again."
     }

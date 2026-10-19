@@ -1,4 +1,5 @@
 import createIntlMiddleware from "next-intl/middleware";
+import { chain } from "./lib/chain/config";
 import type { NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
 
@@ -18,7 +19,7 @@ function origin(url: string | undefined): string {
  * this response can run. External origins are limited to the map tiles, the chain RPC and IPFS.
  */
 function contentSecurityPolicy(nonce: string): string {
-  const rpc = origin(process.env.NEXT_PUBLIC_RPC_URL) || "https://sepolia.base.org";
+  const rpc = origin(chain.rpcUrls.default.http[0]);
   const ipfs = origin(process.env.IPFS_GATEWAY) || "https://gateway.pinata.cloud";
   const tiles = "https://tiles.openfreemap.org https://tiles.maps.eox.at";
   return [
