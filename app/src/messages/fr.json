@@ -457,6 +457,7 @@
   "report": {
     "title": "Rapport de vérification",
     "notFound": "Ce rapport est introuvable ou ne correspond pas à son hash.",
+    "fixtureNotice": "Rapport de test local : écrit par le script de démonstration, sans IA et sans photos réelles. Il sert uniquement à tester le cycle complet sur une chaîne locale.",
     "backToProject": "Retour au projet",
     "subtitle": "Projet n° {project}, période de {from} à {to}",
     "hash": "Hash du rapport",

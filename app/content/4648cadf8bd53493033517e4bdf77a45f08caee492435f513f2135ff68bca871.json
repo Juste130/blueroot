@@ -1,0 +1,47 @@
+{
+  "cells": [
+    "8a5890aa8a27fff",
+    "8a5890aa8b07fff",
+    "8a5890aa8b0ffff",
+    "8a5890aa8b1ffff",
+    "8a5890aa8b27fff",
+    "8a5890aa8b2ffff",
+    "8a5890aa8b67fff",
+    "8a5890aa8b6ffff",
+    "8a5890aad4c7fff",
+    "8a5890aad4d7fff",
+    "8a5890aad4dffff",
+    "8a5890aad4e7fff",
+    "8a5890aad4f7fff",
+    "8a5890aad55ffff",
+    "8a5890aad607fff",
+    "8a5890aad60ffff",
+    "8a5890aad617fff",
+    "8a5890aad6a7fff",
+    "8a5890aad6affff",
+    "8a5890aad6f7fff",
+    "8a5890aad787fff",
+    "8a5890aad78ffff",
+    "8a5890aad797fff",
+    "8a5890aad79ffff"
+  ],
+  "community": {
+    "name": "Organisation communautaire de Sodomè (démonstration)"
+  },
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "description": "Zone de démonstration : mangrove cartographiée dans OpenStreetMap (wetland=mangrove). Son statut de projet de restauration doit être validé sur le terrain avec la communauté de Sodomè, Hakouè.",
+  "language": "fr",
+  "location": {
+    "commune": "Grand-Popo",
+    "country": "BJ",
+    "department": "Mono",
+    "place": "Sodomè, Hakouè"
+  },
+  "name": "Mangroves de Sodomè",
+  "satelliteZone": "sodome-grand-popo",
+  "schemaVersion": "blueroot.project/1",
+  "source": {
+    "description": "OpenStreetMap wetland=mangrove",
+    "license": "ODbL 1.0"
+  }
+}

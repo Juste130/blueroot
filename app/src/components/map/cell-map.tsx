@@ -5,7 +5,8 @@ import type { GeoJSONSource, Map as MapLibreMap, StyleSpecification } from "mapl
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useRouter } from "@/i18n/navigation";
-import { type CellZone, boundsOf, cellsToGeoJson } from "@/lib/cells";
+import { type CellZone, boundsOf, cellsToGeoJson, zoneMarkers } from "@/lib/cells";
+import { loadMaplibre } from "@/lib/maplibre";
 
 type Basemap = "satellite" | "plan";
 
@@ -38,12 +39,15 @@ export function CellMap({
   className,
   linkToProjects = false,
   initialBasemap = "satellite",
+  insetLeft,
 }: {
   zones: CellZone[];
   label: string;
   className?: string;
   linkToProjects?: boolean;
   initialBasemap?: Basemap;
+  /** Left padding (px) when fitting the zones on wide screens, to clear an overlaid panel. */
+  insetLeft?: number;
 }) {
   const t = useTranslations("map");
   const router = useRouter();
@@ -54,21 +58,25 @@ export function CellMap({
   const [state, setState] = useState<"loading" | "ready" | "unsupported">("loading");
   const data = useMemo(() => cellsToGeoJson(zones), [zones]);
   const bounds = useMemo(() => boundsOf(zones.flatMap((z) => z.cells)), [zones]);
+  const markers = useMemo(() => zoneMarkers(zones), [zones]);
   const dataRef = useRef(data);
   dataRef.current = data;
+  const markersRef = useRef(markers);
+  markersRef.current = markers;
 
   useEffect(() => {
     let cancelled = false;
     let instance: MapLibreMap | undefined;
     (async () => {
-      const maplibre = await import("maplibre-gl");
+      const maplibre = await loadMaplibre();
       if (cancelled || !container.current) return;
       try {
         instance = new maplibre.Map({
           container: container.current,
           style: basemap === "satellite" ? SATELLITE_STYLE : PLAN_STYLE,
           bounds: bounds ?? [[1.6, 6.2], [2.2, 6.45]],
-          fitBoundsOptions: { padding: 48, maxZoom: 15 },
+          // On wide screens the hero text panel covers the left side: keep the zones to its right.
+          fitBoundsOptions: { padding: insetLeft && container.current.clientWidth >= 1024 ? { top: 64, bottom: 64, right: 64, left: insetLeft } : 48, maxZoom: 15 },
           attributionControl: { compact: true },
           cooperativeGestures: true,
           dragRotate: false,
@@ -84,16 +92,32 @@ export function CellMap({
         const m = instance!;
         if (m.getSource("cells")) return;
         m.addSource("cells", { type: "geojson", data: dataRef.current });
+        m.addSource("zones", { type: "geojson", data: markersRef.current });
+        // Zoomed out: one marker per zone. Zoomed in: the cells themselves.
+        m.addLayer({
+          id: "zones-marker",
+          type: "circle",
+          source: "zones",
+          maxzoom: 13.5,
+          paint: {
+            "circle-radius": 9,
+            "circle-color": COLORS.mangrove,
+            "circle-stroke-width": 3,
+            "circle-stroke-color": ["case", ["==", ["get", "anchored"], true], COLORS.gold, COLORS.roots],
+          },
+        });
         m.addLayer({
           id: "cells-fill",
           type: "fill",
           source: "cells",
+          minzoom: 12.5,
           paint: { "fill-color": COLORS.mangrove, "fill-opacity": ["case", ["boolean", ["feature-state", "hover"], false], 0.6, 0.38] },
         });
         m.addLayer({
           id: "cells-line",
           type: "line",
           source: "cells",
+          minzoom: 12.5,
           filter: ["==", ["get", "anchored"], true],
           paint: { "line-color": COLORS.gold, "line-width": 1.4 },
         });
@@ -101,18 +125,21 @@ export function CellMap({
           id: "cells-line-candidate",
           type: "line",
           source: "cells",
+          minzoom: 12.5,
           filter: ["==", ["get", "anchored"], false],
           paint: { "line-color": basemap === "satellite" ? COLORS.roots : COLORS.tide, "line-width": 1, "line-dasharray": [2, 1.5] },
         });
         setState("ready");
       });
       if (linkToProjects) {
-        instance.on("mouseenter", "cells-fill", () => (instance!.getCanvas().style.cursor = "pointer"));
-        instance.on("mouseleave", "cells-fill", () => (instance!.getCanvas().style.cursor = ""));
-        instance.on("click", "cells-fill", (e) => {
-          const slug = e.features?.[0]?.properties?.slug as string | undefined;
-          if (slug) router.push(`/projects/${slug}`);
-        });
+        for (const layer of ["cells-fill", "zones-marker"]) {
+          instance.on("mouseenter", layer, () => (instance!.getCanvas().style.cursor = "pointer"));
+          instance.on("mouseleave", layer, () => (instance!.getCanvas().style.cursor = ""));
+          instance.on("click", layer, (e) => {
+            const slug = e.features?.[0]?.properties?.slug as string | undefined;
+            if (slug) router.push(`/projects/${slug}`);
+          });
+        }
       }
       map.current = instance;
     })();
@@ -127,11 +154,13 @@ export function CellMap({
 
   useEffect(() => {
     (map.current?.getSource("cells") as GeoJSONSource | undefined)?.setData(data);
-  }, [data]);
+    (map.current?.getSource("zones") as GeoJSONSource | undefined)?.setData(markers);
+  }, [data, markers]);
 
   return (
     <div className={`relative overflow-hidden bg-tide ${className ?? ""}`}>
-      <div ref={container} role="region" aria-label={label} className="absolute inset-0" />
+      {/* Sized with h-full, not absolute inset-0: MapLibre's stylesheet forces position: relative on the map container. */}
+      <div ref={container} role="region" aria-label={label} className="h-full w-full" />
       {state === "unsupported" ? (
         <p className="absolute inset-x-4 bottom-4 rounded-control bg-surface/95 p-3 text-sm">{t("unsupported")}</p>
       ) : null}

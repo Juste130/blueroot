@@ -1,0 +1,32 @@
+{
+  "cells": [
+    "8a5890a19c17fff",
+    "8a5890a19c1ffff",
+    "8a5890a19c37fff",
+    "8a5890a19ca7fff",
+    "8a5890a19caffff",
+    "8a5890a19cc7fff",
+    "8a5890a19cf7fff",
+    "8a5890a19d8ffff",
+    "8a5890a19d9ffff"
+  ],
+  "community": {
+    "name": "Organisation communautaire de Djègbamè (démonstration)"
+  },
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "description": "Zone de démonstration : mangrove cartographiée dans OpenStreetMap (wetland=mangrove). Son statut de projet de restauration doit être validé sur le terrain avec la communauté de Djègbamè.",
+  "language": "fr",
+  "location": {
+    "commune": "Ouidah",
+    "country": "BJ",
+    "department": "Atlantique",
+    "place": "Djègbamè"
+  },
+  "name": "Mangroves de Djègbamè",
+  "satelliteZone": "djegbame-ouidah",
+  "schemaVersion": "blueroot.project/1",
+  "source": {
+    "description": "OpenStreetMap wetland=mangrove",
+    "license": "ODbL 1.0"
+  }
+}

@@ -56,6 +56,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           zones={projects.map((p) => ({ slug: p.slug, name: p.name, cells: p.cells, anchored: p.status !== "candidate" }))}
           label={t("mapLabel")}
           linkToProjects
+          insetLeft={620}
           className="h-[52svh] min-h-80 lg:h-[calc(100svh-7rem)] lg:max-h-[52rem]"
         />
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:pointer-events-none lg:absolute lg:inset-x-0 lg:bottom-10">

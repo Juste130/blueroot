@@ -1,0 +1,39 @@
+{
+  "cells": [
+    "8a5890aa8817fff",
+    "8a5890aa8887fff",
+    "8a5890aa88affff",
+    "8a5890aa88b7fff",
+    "8a5890aa88c7fff",
+    "8a5890aa88e7fff",
+    "8a5890aa88f7fff",
+    "8a5890aa898ffff",
+    "8a5890aa8997fff",
+    "8a5890aa899ffff",
+    "8a5890aa89b7fff",
+    "8a5890aa8d47fff",
+    "8a5890aa8d4ffff",
+    "8a5890aa8d67fff",
+    "8a5890aa8d6ffff",
+    "8a5890aac6dffff"
+  ],
+  "community": {
+    "name": "Organisation communautaire de Gnigbohoué (démonstration)"
+  },
+  "createdAt": "2026-10-19T00:00:00.000Z",
+  "description": "Zone de démonstration : mangrove cartographiée dans OpenStreetMap (wetland=mangrove). Son statut de projet de restauration doit être validé sur le terrain avec la communauté de Gnigbohoué, Kpêko.",
+  "language": "fr",
+  "location": {
+    "commune": "Grand-Popo",
+    "country": "BJ",
+    "department": "Mono",
+    "place": "Gnigbohoué, Kpêko"
+  },
+  "name": "Mangroves de Gnigbohoué",
+  "satelliteZone": "gnigbohoue-grand-popo",
+  "schemaVersion": "blueroot.project/1",
+  "source": {
+    "description": "OpenStreetMap wetland=mangrove",
+    "license": "ODbL 1.0"
+  }
+}

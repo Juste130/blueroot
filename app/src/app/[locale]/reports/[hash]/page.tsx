@@ -53,6 +53,11 @@ export default async function ReportPage({ params }: Params) {
       <p className="mt-4 text-sm">
         <Hash value={doc.hash} label={t("hash")} full />
       </p>
+      {r.ai.provider === "fixture" ? (
+        <p role="alert" className="mt-6 rounded-panel border border-bad/30 bg-bad/10 p-4 text-sm">
+          {t("fixtureNotice")}
+        </p>
+      ) : null}
 
       <section aria-labelledby="scores-title" className="mt-10">
         <h2 id="scores-title" className="text-xl">

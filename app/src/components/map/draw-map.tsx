@@ -5,6 +5,7 @@ import type { GeoJSONSource, Map as MapLibreMap, StyleSpecification } from "mapl
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { cellsToGeoJson } from "@/lib/cells";
+import { loadMaplibre } from "@/lib/maplibre";
 
 const STYLE: StyleSpecification = {
   version: 8,
@@ -37,7 +38,7 @@ export function DrawMap({ onPolygon, cells, label }: { onPolygon: (ring: [number
     let instance: MapLibreMap | undefined;
     let cancelled = false;
     (async () => {
-      const maplibre = await import("maplibre-gl");
+      const maplibre = await loadMaplibre();
       if (cancelled || !container.current) return;
       instance = new maplibre.Map({ container: container.current, style: STYLE, center: [1.85, 6.3], zoom: 11, dragRotate: false, doubleClickZoom: false });
       instance.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");

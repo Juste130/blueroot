@@ -62,4 +62,19 @@ npm run app typecheck
 npm run app abi             # regenerate ABIs after `forge build`
 ```
 
-Local chain: `anvil`, then deploy with the Foundry script on chain 31337 and set `NEXT_PUBLIC_CHAIN_ID=31337`.
+## Full lifecycle on a local chain
+
+`app/scripts/demo.ts` plays the whole cycle against Anvil with the real contracts: the 3 demo zones registered, a double-counting attempt rejected, one file anchored, approved by two validators and finalized (credits plus buffer pool), 1,000 credits listed, 600 bought with the enforced split, 250 retired with a public certificate, and a second file waiting for its second vote. Its reports are **fixtures** (`provider: "fixture"`): no AI call and no real photo. The app labels them, the server refuses to anchor them, and the script refuses any chain other than 31337.
+
+```bash
+anvil                                                   # terminal 1
+cd contracts
+eval "$(node ../app/scripts/demo.ts roles)"             # PROPONENTS, VALIDATORS, ANCHOR_ADDRESS (Anvil test accounts)
+PROPONENTS=$PROPONENTS VALIDATORS=$VALIDATORS ANCHOR_ADDRESS=$ANCHOR_ADDRESS \
+  forge script script/Deploy.s.sol --rpc-url http://127.0.0.1:8545 --broadcast \
+  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80   # Anvil account 0, public
+cd .. && npm run app demo
+echo NEXT_PUBLIC_CHAIN_ID=31337 > app/.env.local && npm run dev
+```
+
+The Anvil keys are the public test keys every Foundry install shares; they must never hold real funds.

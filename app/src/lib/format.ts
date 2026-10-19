@@ -23,7 +23,10 @@ export function formatMonth(locale: string, month: string, style: "short" | "lon
 }
 
 /** Payment token amount (6 decimals) as a currency-like string. */
-export function formatToken(locale: string, baseUnits: string | bigint, symbol = "USDC"): string {
+/** Real USDC only on Base mainnet (8453); everywhere else it is the test token tUSDC. */
+const TOKEN_SYMBOL = process.env.NEXT_PUBLIC_CHAIN_ID === "8453" ? "USDC" : "tUSDC";
+
+export function formatToken(locale: string, baseUnits: string | bigint, symbol = TOKEN_SYMBOL): string {
   const value = Number(BigInt(baseUnits)) / 1e6;
   return `${new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)} ${symbol}`;
 }

@@ -25,6 +25,28 @@ export function cellsToGeoJson(zones: readonly CellZone[]) {
   };
 }
 
+/**
+ * One point per zone (mean of its cell centres). A 1.2 ha cell is invisible when the map shows the
+ * whole coast, so zones are drawn as markers when zoomed out and as cells when zoomed in.
+ */
+export function zoneMarkers(zones: readonly CellZone[]) {
+  return {
+    type: "FeatureCollection" as const,
+    features: zones
+      .filter((z) => z.cells.length > 0)
+      .map((z) => {
+        const centres = z.cells.map((c) => cellToLatLng(c));
+        const lat = centres.reduce((s, [la]) => s + la, 0) / centres.length;
+        const lon = centres.reduce((s, [, lo]) => s + lo, 0) / centres.length;
+        return {
+          type: "Feature" as const,
+          properties: { slug: z.slug, name: z.name, anchored: z.anchored },
+          geometry: { type: "Point" as const, coordinates: [lon, lat] },
+        };
+      }),
+  };
+}
+
 export function boundsOf(cells: readonly string[]): [[number, number], [number, number]] | undefined {
   if (cells.length === 0) return undefined;
   let minLon = Infinity, minLat = Infinity, maxLon = -Infinity, maxLat = -Infinity;

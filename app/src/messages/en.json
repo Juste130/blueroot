@@ -457,6 +457,7 @@
   "report": {
     "title": "Verification report",
     "notFound": "This report cannot be found or does not match its hash.",
+    "fixtureNotice": "Local test report: written by the demo script, without AI and without real photos. It only serves to test the full cycle on a local chain.",
     "backToProject": "Back to the project",
     "subtitle": "Project #{project}, period from {from} to {to}",
     "hash": "Report hash",
