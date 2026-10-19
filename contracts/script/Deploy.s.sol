@@ -16,8 +16,8 @@ import {MockUSDC} from "../src/mocks/MockUSDC.sol";
 /// @title Deploy
 /// @notice Deploys the BlueRoot system and writes `deployments/<chainId>.json` for the app.
 /// @dev Usage (keystore account, never a raw private key in env):
-///   forge script script/Deploy.s.sol --rpc-url base_sepolia --account deployer --sender <addr> \
-///     --broadcast --verify
+///   forge script script/Deploy.s.sol --rpc-url polygon_amoy --account deployer --sender <addr> \
+///     --broadcast --verify --priority-gas-price 30gwei
 /// Environment (all optional):
 ///   ADMIN_ADDRESS     governance multisig receiving the admin role (two-step). Defaults to deployer.
 ///   TREASURY_ADDRESS  platform fee recipient. Defaults to ADMIN_ADDRESS.

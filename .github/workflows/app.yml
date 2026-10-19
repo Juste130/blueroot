@@ -31,5 +31,5 @@ jobs:
       - name: Build
         run: npm run app build
         env:
-          NEXT_PUBLIC_CHAIN_ID: "84532"
+          NEXT_PUBLIC_CHAIN_ID: "80002"
           SESSION_SECRET: ci-only-session-secret-0123456789abcdef

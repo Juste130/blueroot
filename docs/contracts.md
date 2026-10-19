@@ -1,6 +1,6 @@
 # BlueRoot smart contracts
 
-Solidity 0.8.28 · OpenZeppelin 5.4.0 · Foundry · target network: Base Sepolia (testnet only).
+Solidity 0.8.28 · OpenZeppelin 5.4.0 · Foundry · target network: Polygon Amoy (testnet only; Base Sepolia also configured).
 
 ## Architecture
 

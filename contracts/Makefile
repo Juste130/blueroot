@@ -2,7 +2,7 @@
 FORGE_STD_VERSION := v1.17.0
 OZ_VERSION        := v5.4.0
 
-.PHONY: deps build test test-ci coverage gas fmt slither deploy-sepolia
+.PHONY: deps build test test-ci coverage gas fmt slither deploy-sepolia deploy-amoy
 
 deps:
 	rm -rf lib/forge-std lib/openzeppelin-contracts
@@ -32,3 +32,8 @@ slither:
 
 deploy-sepolia:
 	forge script script/Deploy.s.sol --rpc-url base_sepolia --account deployer --broadcast --verify
+
+# Polygon rejects transactions tipping less than 25 gwei.
+deploy-amoy:
+	forge script script/Deploy.s.sol --rpc-url polygon_amoy --account deployer --broadcast --verify \
+		--priority-gas-price 30gwei
