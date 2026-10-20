@@ -4,7 +4,7 @@ import { cellArea, polygonToCells, UNITS } from "h3-js";
 import { useLocale, useTranslations } from "next-intl";
 import { useId, useMemo, useState } from "react";
 import { decodeEventLog, getAddress, isAddress } from "viem";
-import { useWriteContract } from "wagmi";
+import { useWrite } from "@/components/tx/use-write";
 import { useRouter } from "@/i18n/navigation";
 import { projectRegistryAbi } from "@/lib/chain/abi";
 import { formatNumber } from "@/lib/format";
@@ -55,7 +55,7 @@ export function RegisterForm({ zones, taken }: { zones: CandidateZone[]; taken: 
   const [importError, setImportError] = useState(false);
   const [form, setForm] = useState({ name: "", description: "", place: "", commune: "", department: "", community: "", wallet: "" });
   const [step, setStep] = useState<{ kind: "idle" | "publishing" | "registering" | "cells" | "done" | "error"; batch?: number; batches?: number; error?: string }>({ kind: "idle" });
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
 
   const cells = mode === "demo" ? (zones.find((z) => z.id === zoneId)?.cells ?? []) : mode === "draw" ? drawn : imported;

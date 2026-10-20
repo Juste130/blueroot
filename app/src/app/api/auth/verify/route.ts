@@ -1,5 +1,5 @@
-import { getAddress } from "viem";
-import { parseSiweMessage } from "viem/siwe";
+import { getAddress, isAddressEqual, recoverMessageAddress } from "viem";
+import { parseSiweMessage, validateSiweMessage } from "viem/siwe";
 import { z } from "zod";
 import { ApiError, assertSameOrigin, clientIp, handle, json, parse, readJson } from "@/lib/api";
 import { consumeNonce, startSession } from "@/lib/auth/session";
@@ -26,14 +26,14 @@ export const POST = handle(async (request: Request) => {
   const domain = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "";
   if (fields.chainId !== CHAIN_ID) throw new ApiError(401, "wrong_chain");
 
-  // verifySiweMessage also supports smart-contract wallets (ERC-1271 / ERC-6492).
-  const valid = await publicClient.verifySiweMessage({
-    message,
-    signature: signature as `0x${string}`,
-    domain,
-    nonce,
-    time: new Date(),
-  });
+  // A plain ECDSA signature from the address itself settles it locally. This also covers embedded
+  // wallets upgraded with EIP-7702 for gas sponsorship, whose delegated code would otherwise be asked
+  // through ERC-1271. Anything else goes to verifySiweMessage (smart-contract wallets, ERC-6492).
+  const time = new Date();
+  const recovered = await recoverMessageAddress({ message, signature: signature as `0x${string}` }).catch(() => null);
+  const valid =
+    (validateSiweMessage({ message: fields, domain, nonce, time }) && !!fields.address && !!recovered && isAddressEqual(recovered, fields.address)) ||
+    (await publicClient.verifySiweMessage({ message, signature: signature as `0x${string}`, domain, nonce, time }));
   if (!valid || !fields.address) throw new ApiError(401, "invalid_signature");
 
   const address = getAddress(fields.address);

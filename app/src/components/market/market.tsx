@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { isAddressEqual } from "viem";
-import { useWriteContract } from "wagmi";
+import { useWrite } from "@/components/tx/use-write";
 import { useRouter } from "@/i18n/navigation";
 import { marketplaceAbi, paymentTokenAbi } from "@/lib/chain/abi";
 import { formatNumber, formatToken, shortHex, unitsToHaYears } from "@/lib/format";
@@ -106,7 +106,7 @@ export function Market({ listings, tokens, testnet }: { listings: MarketListing[
 function CancelButton({ listingId, onDone }: { listingId: number; onDone: () => void }) {
   const t = useTranslations("market");
   const d = useDeployment()!;
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
   return (
     <div>
@@ -129,7 +129,7 @@ function CancelButton({ listingId, onDone }: { listingId: number; onDone: () => 
 function FaucetButton() {
   const t = useTranslations("market");
   const d = useDeployment()!;
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
   return (
     <div className="text-right">

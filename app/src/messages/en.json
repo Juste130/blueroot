@@ -35,7 +35,11 @@
       "admin": "Administration"
     },
     "signInError": "The signature could not be verified. Try again.",
-    "rejected": "Signature declined in the wallet."
+    "rejected": "Signature declined in the wallet.",
+    "login": "Sign in",
+    "privyHeader": "Sign in to BlueRoot",
+    "account": "BlueRoot account",
+    "sponsored": "Network fees covered by BlueRoot."
   },
   "network": {
     "testnet": "Demonstration on {network} (test network): credits and payments have no real value.",
@@ -253,6 +257,7 @@
   "gate": {
     "notDeployed": "This action will be available once the contracts are deployed.",
     "signIn": "Connect your wallet and sign to continue. Signing is free and authorizes no transaction.",
+    "signInPrivy": "Sign in with your email or your wallet to continue.",
     "loading": "Reading your on-chain roles…",
     "missingRole": {
       "proponent": "Your wallet does not have the project proponent role. Proponents are onboarded by the registry administration.",

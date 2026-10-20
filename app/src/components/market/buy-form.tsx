@@ -3,7 +3,8 @@
 import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import type { Address } from "viem";
-import { useReadContract, useReadContracts, useWriteContract } from "wagmi";
+import { useReadContract, useReadContracts } from "wagmi";
+import { useWrite } from "@/components/tx/use-write";
 import { marketplaceAbi, paymentTokenAbi } from "@/lib/chain/abi";
 import { formatNumber, formatToken, unitsToHaYears } from "@/lib/format";
 import type { Listing } from "@/lib/registry/state";
@@ -18,7 +19,7 @@ export function BuyForm({ listing, buyer, locale, onDone }: { listing: Listing; 
   const amountId = useId();
   const [amount, setAmount] = useState(Math.min(listing.amount, 100));
   const valid = Number.isInteger(amount) && amount > 0 && amount <= listing.amount;
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
 
   const { data: quote } = useReadContract({

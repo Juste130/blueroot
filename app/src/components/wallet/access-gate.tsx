@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import type { Address } from "viem";
 import { useDeployment } from "../providers";
+import { usePrivyAuth } from "./privy";
 import { useSession } from "./session";
 import { type Roles, useRoles } from "./use-roles";
 
@@ -14,12 +15,13 @@ export function AccessGate({ role, children }: { role?: keyof Roles; children: (
   const t = useTranslations("gate");
   const deployment = useDeployment();
   const session = useSession();
+  const privy = usePrivyAuth();
   const { roles, isLoading } = useRoles(session.address);
 
   let message: string | null = null;
   if (!deployment) message = t("notDeployed");
   else if (session.status === "loading" || (session.address && isLoading)) message = null;
-  else if (!session.address) message = t("signIn");
+  else if (!session.address) message = t(privy ? "signInPrivy" : "signIn");
   else if (role && !roles[role]) message = t(`missingRole.${role}`);
 
   if (message) {

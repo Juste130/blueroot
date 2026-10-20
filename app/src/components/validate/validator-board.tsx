@@ -3,7 +3,8 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { type Address, isAddressEqual } from "viem";
-import { useReadContract, useWriteContract } from "wagmi";
+import { useReadContract } from "wagmi";
+import { useWrite } from "@/components/tx/use-write";
 import { Link, useRouter } from "@/i18n/navigation";
 import { verificationAbi } from "@/lib/chain/abi";
 import type { EvidenceFlag } from "@/lib/evidence/checks";
@@ -93,7 +94,7 @@ function ReviewCard({ claim: c, validator }: { claim: BoardClaim; validator: Add
   const locale = useLocale();
   const router = useRouter();
   const d = useDeployment()!;
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
   const own = isAddressEqual(c.owner, validator) || isAddressEqual(c.community, validator);
   const { data: voted, refetch } = useReadContract({ address: d.verification, abi: verificationAbi, functionName: "hasVoted", args: [BigInt(c.id), validator] });
@@ -205,7 +206,7 @@ function FinalizeButton({ claimId }: { claimId: number }) {
   const t = useTranslations("validate");
   const router = useRouter();
   const d = useDeployment();
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
   if (!d) return null;
   return (

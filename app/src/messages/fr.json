@@ -35,7 +35,11 @@
       "admin": "Administration"
     },
     "signInError": "La signature n'a pas pu être vérifiée. Réessayez.",
-    "rejected": "Signature refusée dans le wallet."
+    "rejected": "Signature refusée dans le wallet.",
+    "login": "Se connecter",
+    "privyHeader": "Connexion à BlueRoot",
+    "account": "Compte BlueRoot",
+    "sponsored": "Frais de réseau pris en charge par BlueRoot."
   },
   "network": {
     "testnet": "Démonstration sur {network} (réseau de test) : les crédits et paiements n'ont aucune valeur réelle.",
@@ -253,6 +257,7 @@
   "gate": {
     "notDeployed": "Cette action sera disponible dès que les contrats seront déployés.",
     "signIn": "Connectez votre wallet et signez pour continuer. La signature est gratuite et n'autorise aucune transaction.",
+    "signInPrivy": "Connectez-vous avec votre e-mail ou votre wallet pour continuer.",
     "loading": "Lecture de vos rôles sur la chaîne…",
     "missingRole": {
       "proponent": "Votre wallet n'a pas le rôle de porteur de projet. Les porteurs sont inscrits par l'administration du registre.",

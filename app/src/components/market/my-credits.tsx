@@ -3,7 +3,8 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import { type Address, decodeEventLog, parseUnits } from "viem";
-import { useReadContract, useReadContracts, useWriteContract } from "wagmi";
+import { useReadContract, useReadContracts } from "wagmi";
+import { useWrite } from "@/components/tx/use-write";
 import { useRouter } from "@/i18n/navigation";
 import { carbonCreditAbi, marketplaceAbi } from "@/lib/chain/abi";
 import { PAYMENT_DECIMALS } from "@/lib/chain/config";
@@ -82,7 +83,7 @@ function SellForm({ token, max, account, onDone }: { token: CreditToken; max: nu
   const ids = { amount: useId(), price: useId() };
   const [amount, setAmount] = useState(max);
   const [price, setPrice] = useState("1.00");
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
   const { data: approved, refetch } = useReadContract({ address: d.carbonCredit, abi: carbonCreditAbi, functionName: "isApprovedForAll", args: [account, d.marketplace] });
 
@@ -143,7 +144,7 @@ function RetireForm({ token, max, account }: { token: CreditToken; max: number; 
   const [name, setName] = useState("");
   const [reason, setReason] = useState("");
   const [publishError, setPublishError] = useState(false);
-  const { mutateAsync: writeContractAsync } = useWriteContract();
+  const writeContractAsync = useWrite();
   const tx = useTx();
   const valid = Number.isInteger(amount) && amount > 0 && amount <= max && name.trim().length > 0 && reason.trim().length > 0;
 

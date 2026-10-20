@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { type Address, isAddressEqual } from "viem";
+import { type Address, type Hex, isAddressEqual } from "viem";
 import { createSiweMessage } from "viem/siwe";
 import { useConnection, useSignMessage } from "wagmi";
 import { chain } from "@/lib/chain/config";
@@ -11,7 +11,8 @@ type SessionState = {
   address: Address | null;
   status: "loading" | "signed-out" | "signing" | "signed-in";
   error: "rejected" | "failed" | null;
-  signIn: () => Promise<void>;
+  /** Signs in with the connected wallet, or with `sign` when given (Privy embedded wallets). */
+  signIn: (sign?: (message: string) => Promise<Hex>) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -51,7 +52,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     if (status === "signed-in" && address && connected && !isAddressEqual(address, connected)) void signOut();
   }, [connected, address, status, signOut]);
 
-  const signIn = useCallback(async () => {
+  const signIn = useCallback(async (sign?: (message: string) => Promise<Hex>) => {
     if (!connected) return;
     setError(null);
     setStatus("signing");
@@ -69,7 +70,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
         issuedAt: now,
         expirationTime: new Date(now.getTime() + 10 * 60_000),
       });
-      const signature = await signMessageAsync({ message });
+      const signature = sign ? await sign(message) : await signMessageAsync({ message });
       const res = await fetch("/api/auth/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

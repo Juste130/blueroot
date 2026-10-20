@@ -6,6 +6,20 @@ import { routing } from "./i18n/routing";
 const intl = createIntlMiddleware(routing);
 const dev = process.env.NODE_ENV !== "production";
 
+/**
+ * Origins Privy needs when it is configured (docs.privy.io, content security policy guide): its auth
+ * iframe, Cloudflare Turnstile, WalletConnect relays and Privy's RPC. Nothing is added otherwise.
+ */
+const privy = process.env.NEXT_PUBLIC_PRIVY_APP_ID
+  ? {
+      script: " https://challenges.cloudflare.com",
+      frame: "https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://challenges.cloudflare.com",
+      connect:
+        " https://auth.privy.io wss://relay.walletconnect.com wss://relay.walletconnect.org wss://www.walletlink.org https://*.rpc.privy.systems https://explorer-api.walletconnect.com",
+      img: " https://explorer-api.walletconnect.com",
+    }
+  : { script: "", frame: "", connect: "", img: "" };
+
 function origin(url: string | undefined): string {
   try {
     return url ? new URL(url).origin : "";
@@ -24,14 +38,15 @@ function contentSecurityPolicy(nonce: string): string {
   const tiles = "https://tiles.openfreemap.org https://tiles.maps.eox.at";
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${dev ? " 'unsafe-eval'" : ""}`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${privy.script}${dev ? " 'unsafe-eval'" : ""}`,
     // MapLibre and React set inline style attributes; styles cannot execute code.
     "style-src 'self' 'unsafe-inline'",
-    `img-src 'self' data: blob: ${tiles} ${ipfs}`,
+    `img-src 'self' data: blob: ${tiles} ${ipfs}${privy.img}`,
     "font-src 'self'",
-    `connect-src 'self' ${rpc} ${tiles}${dev ? " ws: http://127.0.0.1:8545 http://localhost:8545" : ""}`,
+    `connect-src 'self' ${rpc} ${tiles}${privy.connect}${dev ? " ws: http://127.0.0.1:8545 http://localhost:8545" : ""}`,
     "worker-src 'self' blob:",
-    "child-src blob:",
+    `child-src blob: ${privy.frame}`.trim(),
+    ...(privy.frame ? [`frame-src ${privy.frame}`] : []),
     "manifest-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",

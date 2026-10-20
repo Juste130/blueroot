@@ -59,3 +59,35 @@ ANCHOR_API_SECRET=...                 # openssl rand -base64 48
 ```
 
 The same variables go into the hosting provider's environment settings.
+
+## 4. Privy (optional: email sign-in and sponsored gas)
+
+Without `NEXT_PUBLIC_PRIVY_APP_ID` the app only offers injected wallets (MetaMask). With it, people sign
+in with an email (or a wallet), get an embedded wallet, and the platform pays their gas.
+
+In [dashboard.privy.io](https://dashboard.privy.io), for the app:
+
+1. **Allowed domains**: `http://localhost:3000` and the production domain.
+2. **Login methods**: email (plus Google or external wallets if wanted).
+3. **Fee sponsorship**: turn on "Sponsor gas fees", select Polygon Amoy, allow client-side
+   transactions. Sponsorship needs TEE execution for wallets.
+4. **Billing**: sponsored gas is drawn from prepaid credits. Check in the dashboard what testnet
+   sponsorship costs; the docs only state that mainnets need a saved payment method.
+
+Then `NEXT_PUBLIC_PRIVY_APP_ID=...` in `app/.env.local` and in the hosting provider. The CSP allows the
+Privy origins only when that variable is set.
+
+How it behaves:
+
+- Only embedded wallets are sponsored (EIP-7702 delegation plus a paymaster). People who connect
+  MetaMask through Privy still pay their own gas.
+- Embedded wallets open the BlueRoot session (SIWE) without a second prompt. The server verifies the
+  signature locally first, since a 7702-delegated account would otherwise be checked as a contract.
+- Every write is simulated before it is sent, and a sponsored transaction counts as successful only
+  if its receipt holds a log from the target contract: the outer transaction can succeed while the
+  inner call reverted.
+- Roles (proponent, validator) are granted to the embedded wallet's address, shown in the account panel
+  after sign-in.
+
+Sources: docs.privy.io, wallets / gas-and-asset-management / gas (setup and overview), usage-billing,
+security / content-security-policy.

@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { BaseError, ContractFunctionRevertedError, type Hex, type TransactionReceipt, UserRejectedRequestError } from "viem";
+import { BaseError, ContractFunctionRevertedError, type Hex, isAddressEqual, type TransactionReceipt, UserRejectedRequestError } from "viem";
 import { usePublicClient } from "wagmi";
+import { sponsoredTargets } from "./use-write";
 
 export type TxPhase = "idle" | "preparing" | "wallet" | "pending" | "success" | "error";
 
@@ -44,6 +45,9 @@ export function useTx() {
         setState({ phase: "pending", hash });
         const receipt = await client!.waitForTransactionReceipt({ hash, timeout: 120_000 });
         if (receipt.status !== "success") throw new Error("reverted");
+        const target = sponsoredTargets.get(hash);
+        sponsoredTargets.delete(hash);
+        if (target && !receipt.logs.some((l) => isAddressEqual(l.address, target))) throw new Error("reverted");
         setState({ phase: "success", hash });
         return receipt;
       } catch (error) {

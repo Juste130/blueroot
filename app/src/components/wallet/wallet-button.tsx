@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useConnect, useConnection, useConnectors, useDisconnect, useSwitchChain } from "wagmi";
 import { chain } from "@/lib/chain/config";
 import { shortHex } from "@/lib/format";
+import { usePrivyAuth } from "./privy";
 import { useSession } from "./session";
 import { useRoles } from "./use-roles";
 
@@ -19,6 +20,7 @@ export function WalletButton() {
   const { mutate: disconnect } = useDisconnect();
   const { mutate: switchChain, isPending: switching } = useSwitchChain();
   const session = useSession();
+  const privy = usePrivyAuth();
   const { roles } = useRoles(session.address);
   const [open, setOpen] = useState(false);
   const [noWallet, setNoWallet] = useState(false);
@@ -36,6 +38,22 @@ export function WalletButton() {
       document.removeEventListener("mousedown", onClick);
     };
   }, [open]);
+
+  if (!isConnected && privy) {
+    // Privy: one button for email, SMS, Google or an external wallet. While Privy restores a session
+    // (or wagmi picks up the new wallet), the button waits.
+    const waiting = !privy.ready || privy.authenticated;
+    return (
+      <button
+        type="button"
+        disabled={waiting}
+        onClick={privy.login}
+        className={`${button} bg-tide text-paper hover:bg-tide-soft dark:bg-roots dark:text-tide`}
+      >
+        {waiting ? t("connecting") : t("login")}
+      </button>
+    );
+  }
 
   if (!isConnected) {
     return (
@@ -108,7 +126,9 @@ export function WalletButton() {
       </button>
       {open ? (
         <div id={panelId} className="absolute right-0 top-12 z-50 w-72 rounded-panel border border-line bg-surface p-4 text-sm shadow-lg">
+          {privy?.label ? <p className="font-semibold">{privy.label}</p> : null}
           <p className="figures break-all text-muted">{address}</p>
+          {privy?.embedded ? <p className="mt-2 text-xs text-ok">{t("sponsored")}</p> : null}
           <h2 className="mt-4 text-xs font-semibold tracking-normal text-muted">{t("roles")}</h2>
           {roleList.length ? (
             <ul className="mt-2 flex flex-wrap gap-1.5">
@@ -122,19 +142,28 @@ export function WalletButton() {
             <p className="mt-1">{t("noRole")}</p>
           )}
           <div className="mt-4 flex flex-col gap-2 border-t border-line pt-3">
-            <button type="button" onClick={() => void session.signOut()} className="rounded-control px-2 py-1.5 text-left font-medium hover:bg-roots/40">
-              {t("signOut")}
-            </button>
             <button
               type="button"
               onClick={() => {
                 void session.signOut();
-                disconnect();
+                if (privy) void privy.logout();
               }}
-              className="rounded-control px-2 py-1.5 text-left font-medium text-muted hover:bg-roots/40 hover:text-ink"
+              className="rounded-control px-2 py-1.5 text-left font-medium hover:bg-roots/40"
             >
-              {t("disconnect")}
+              {t("signOut")}
             </button>
+            {privy ? null : (
+              <button
+                type="button"
+                onClick={() => {
+                  void session.signOut();
+                  disconnect();
+                }}
+                className="rounded-control px-2 py-1.5 text-left font-medium text-muted hover:bg-roots/40 hover:text-ink"
+              >
+                {t("disconnect")}
+              </button>
+            )}
           </div>
         </div>
       ) : null}
