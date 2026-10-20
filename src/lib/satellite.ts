@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { type NdviSeries, NdviSeriesSchema } from "@blueroot/satellite/schema";
 import { sha256 } from "./content/store";
 
-const SATELLITE_DIR = join(process.cwd(), "..", "scripts", "satellite");
+const SATELLITE_DIR = join(process.cwd(), "scripts", "satellite");
 
 export interface ZoneSeries {
   id: string;

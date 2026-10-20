@@ -14,7 +14,7 @@ const APP_DIR = process.cwd();
 const COMMITTED_DIR = join(APP_DIR, "content");
 /** Documents written at runtime when Pinata is not configured (development only, gitignored). */
 const LOCAL_DIR = join(APP_DIR, ".data", "content");
-const SATELLITE_DIR = join(APP_DIR, "..", "scripts", "satellite", "data");
+const SATELLITE_DIR = join(APP_DIR, "scripts", "satellite", "data");
 
 const GATEWAY = process.env.IPFS_GATEWAY ?? "https://gateway.pinata.cloud";
 const MAX_DOCUMENT_BYTES = 2_000_000;

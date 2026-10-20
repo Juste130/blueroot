@@ -9,7 +9,7 @@
  *   cd contracts && forge script script/Deploy.s.sol --rpc-url http://127.0.0.1:8545 --broadcast \
  *     --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
  *     (env: PROPONENTS, VALIDATORS, ANCHOR_ADDRESS: see printRoles below)
- *   node app/scripts/demo.ts
+ *   node scripts/demo.ts
  *
  * Reports written here are FIXTURES (provider "fixture"): no AI call, no real photo. The app labels
  * them as such, the server refuses to anchor them, and the script refuses to run on any other chain.
@@ -19,14 +19,14 @@ import { fileURLToPath } from "node:url";
 import { type Address, type Hex, createPublicClient, createTestClient, createWalletClient, decodeEventLog, http } from "viem";
 import { mnemonicToAccount } from "viem/accounts";
 import { foundry } from "viem/chains";
-import { canonicalJson, sha256Hex } from "../../scripts/satellite/src/canonical.ts";
+import { canonicalJson, sha256Hex } from "./satellite/src/canonical.ts";
 import { carbonCreditAbi, marketplaceAbi, paymentTokenAbi, projectRegistryAbi, verificationAbi } from "../src/lib/chain/abi.ts";
 import { REPORT_SCHEMA, ReportSchema } from "../src/lib/report/schema.ts";
 import { PROJECT_SCHEMA, ProjectMetadataSchema, RETIREMENT_SCHEMA, RetirementReasonSchema } from "../src/lib/schemas.ts";
 import { THRESHOLD, WEIGHTS, combinedScore } from "../src/lib/score.ts";
 
 const RPC = process.env.RPC_URL ?? "http://127.0.0.1:8545";
-const root = (p: string) => fileURLToPath(new URL(`../../${p}`, import.meta.url));
+const root = (p: string) => fileURLToPath(new URL(`../${p}`, import.meta.url));
 const MNEMONIC = "test test test test test test test test test test test junk"; // Anvil's public test mnemonic
 
 const account = (addressIndex: number) => mnemonicToAccount(MNEMONIC, { addressIndex });
@@ -58,7 +58,7 @@ async function send(account: typeof deployer, request: Parameters<ReturnType<typ
 function store(doc: unknown, committed: boolean): Hex {
   const text = canonicalJson(doc);
   const hash = sha256Hex(text);
-  const dir = root(committed ? "app/content" : "app/.data/content");
+  const dir = root(committed ? "content" : ".data/content");
   mkdirSync(dir, { recursive: true });
   writeFileSync(`${dir}/${hash.slice(2)}.json`, text);
   return hash;

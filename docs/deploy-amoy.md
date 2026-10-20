@@ -46,7 +46,7 @@ block from there. With a Safe admin, accept the admin role from the Safe after `
 
 ## 3. App
 
-`app/.env.local` (never committed):
+`.env.local` (never committed):
 
 ```bash
 NEXT_PUBLIC_CHAIN_ID=80002
@@ -74,7 +74,7 @@ In [dashboard.privy.io](https://dashboard.privy.io), for the app:
 4. **Billing**: sponsored gas is drawn from prepaid credits. Check in the dashboard what testnet
    sponsorship costs; the docs only state that mainnets need a saved payment method.
 
-Then `NEXT_PUBLIC_PRIVY_APP_ID=...` in `app/.env.local` and in the hosting provider. The CSP allows the
+Then `NEXT_PUBLIC_PRIVY_APP_ID=...` in `.env.local` and in the hosting provider. The CSP allows the
 Privy origins only when that variable is set.
 
 How it behaves:

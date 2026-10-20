@@ -179,7 +179,7 @@ Le facteur et les poids sont des hypothèses de démonstration, présentés comm
 - **Minimum on-chain :** seulement les règles de confiance et des hashes, jamais de données brutes ni personnelles.
 - **Calcul hors chaîne, preuve de l'intégrité sur la chaîne.**
 - **Simplicité :** contrats non upgradeables pour le MVP afin de réduire la surface d'attaque, limite assumée.
-- **Un seul dépôt** avec des dossiers `contracts/`, `app/`, `scripts/satellite/`, `docs/`.
+- **Un seul dépôt** avec des dossiers `contracts/`, `scripts/satellite/`, `docs/`, avec l'app Next.js à la racine.
 
 ## 8. Conception des smart contracts
 

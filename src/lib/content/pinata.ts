@@ -67,7 +67,8 @@ export async function listFiles(network: "public" | "private", metadata: Record<
  * Temporary signed link to a private file (F7: validators get time-limited access to raw evidence).
  */
 export async function privateLink(cid: string, expiresSeconds = 15 * 60): Promise<string> {
-  const gateway = process.env.PINATA_GATEWAY;
+  // Accepts "example.mypinata.cloud" as documented, or the full URL the Pinata dashboard copies.
+  const gateway = process.env.PINATA_GATEWAY?.replace(/^https?:\/\//, "").replace(/\/+$/, "");
   if (!gateway) throw new Error("PINATA_GATEWAY is not configured");
   const res = await fetch(`${API}/files/private/download_link`, {
     method: "POST",

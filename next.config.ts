@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
-const repoRoot = fileURLToPath(new URL("..", import.meta.url));
+const repoRoot = fileURLToPath(new URL(".", import.meta.url));
 
 // Headers that do not depend on the request. The Content-Security-Policy needs a per-request
 // nonce, so it is set in `src/proxy.ts`.
@@ -24,7 +24,7 @@ const config: NextConfig = {
   // The NDVI files live in scripts/satellite/data and are read (and hashed) at runtime.
   outputFileTracingRoot: repoRoot,
   outputFileTracingIncludes: {
-    "/**": ["../scripts/satellite/data/**/*.json", "../contracts/deployments/*.json", "./content/**/*.json"],
+    "/**": ["./scripts/satellite/data/**/*.json", "./contracts/deployments/*.json", "./content/**/*.json"],
   },
   async headers() {
     return [

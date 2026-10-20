@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { CHAIN_ID, type Deployment, DeploymentSchema } from "./config";
 
-const DEPLOYMENTS_DIR = join(process.cwd(), "..", "contracts", "deployments");
+const DEPLOYMENTS_DIR = join(process.cwd(), "contracts", "deployments");
 
 let cached: { deployment: Deployment | null } | undefined;
 

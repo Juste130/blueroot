@@ -1,7 +1,7 @@
 /**
  * End-to-end checks of the API routes against a running app (`npm run dev`) and the local chain
  * seeded by scripts/demo.ts. Every protection is exercised with a real request, including the
- * attacks it must block. Run: node app/scripts/api-check.ts
+ * attacks it must block. Run: node scripts/api-check.ts
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -18,7 +18,7 @@ const MNEMONIC = "test test test test test test test test test test test junk"; 
 const proponent = mnemonicToAccount(MNEMONIC, { addressIndex: 1 });
 const validator = mnemonicToAccount(MNEMONIC, { addressIndex: 3 });
 const buyer = mnemonicToAccount(MNEMONIC, { addressIndex: 6 });
-const root = (p: string) => fileURLToPath(new URL(`../../${p}`, import.meta.url));
+const root = (p: string) => fileURLToPath(new URL(`../${p}`, import.meta.url));
 
 let passed = 0;
 const failures: string[] = [];
@@ -187,7 +187,7 @@ async function main() {
   check("photo without GPS is flagged no_gps", noGps.status === 201 && (noGps.body.evidence as { flags: string[] }).flags.includes("no_gps"), noGps);
   const old = await upload(owner, 1, await photo(seed + 3, cells[1]!, new Date("2024-01-01T10:00:00")));
   check("old photo is flagged too_old", old.status === 201 && (old.body.evidence as { flags: string[] }).flags.includes("too_old"), old);
-  const png = await upload(owner, 1, new Blob([new Uint8Array(readFileSync(root("app/public/icon.svg")))], { type: "image/jpeg" }), "fake.jpg");
+  const png = await upload(owner, 1, new Blob([new Uint8Array(readFileSync(root("public/icon.svg")))], { type: "image/jpeg" }), "fake.jpg");
   check("non-JPEG disguised as .jpg is refused and not stored", png.status === 422 && png.body.error === "invalid_file_type", png);
   const stranger = await upload(buyerSession.call, 1, await photo(seed + 4, cells[0]!));
   check("wallet that is not a project member cannot upload", stranger.status === 403 && stranger.body.error === "not_project_member", stranger);

@@ -18,7 +18,7 @@ Open-source proof registry for community mangrove restoration in Benin: on-chain
 |---|---|---|
 | `contracts/` | Solidity + Foundry: registry, verification, credits, marketplace | ✅ Module 1 |
 | `scripts/satellite/` | Sentinel-2 NDVI pipeline and versioned demo data (3 real mangrove zones) | ✅ Module 2 |
-| `app/` | Next.js app: public registry, field evidence PWA, AI report, validation, market, certificates ([docs](docs/app.md)) | ✅ Module 3 |
+| `src/`, `public/`, `content/` | Next.js app at the repository root: public registry, field evidence PWA, AI report, validation, market, certificates ([docs](docs/app.md)) | ✅ Module 3 |
 | `docs/` | Specification, contract design, architecture | ✅ |
 
 - Specification: [docs/BlueRoot-cahier-des-charges-et-architecture.md](docs/BlueRoot-cahier-des-charges-et-architecture.md)

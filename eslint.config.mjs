@@ -4,5 +4,5 @@ import nextTs from "eslint-config-next/typescript";
 export default [
   ...nextVitals,
   ...nextTs,
-  { ignores: [".next/**", "next-env.d.ts", "src/lib/chain/abi.ts", "public/sw.js"] },
+  { ignores: [".next/**", "next-env.d.ts", "src/lib/chain/abi.ts", "public/sw.js", "contracts/**", "video/**", "scripts/satellite/**"] },
 ];

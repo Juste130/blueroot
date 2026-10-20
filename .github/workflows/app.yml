@@ -3,9 +3,9 @@ name: app
 on:
   push:
     branches: [main]
-    paths: ["app/**", "scripts/satellite/**", "contracts/src/**", "package-lock.json", ".github/workflows/app.yml"]
+    paths: ["src/**", "public/**", "content/**", "test/**", "scripts/*.*", "*.json", "*.ts", "*.mjs", "scripts/satellite/**", "contracts/src/**", "package-lock.json", ".github/workflows/app.yml"]
   pull_request:
-    paths: ["app/**", "scripts/satellite/**", "contracts/src/**", "package-lock.json", ".github/workflows/app.yml"]
+    paths: ["src/**", "public/**", "content/**", "test/**", "scripts/*.*", "*.json", "*.ts", "*.mjs", "scripts/satellite/**", "contracts/src/**", "package-lock.json", ".github/workflows/app.yml"]
 
 permissions:
   contents: read
@@ -21,15 +21,15 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Typecheck
-        run: npm run app typecheck
+        run: npm run typecheck
       - name: Lint
-        run: npm run app lint
+        run: npm run lint
       - name: Unit tests
-        run: npm run app test
+        run: npm test
       - name: Production dependencies audit
         run: npm audit --omit=dev --audit-level=high
       - name: Build
-        run: npm run app build
+        run: npm run build
         env:
           NEXT_PUBLIC_CHAIN_ID: "80002"
           SESSION_SECRET: ci-only-session-secret-0123456789abcdef

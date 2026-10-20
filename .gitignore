@@ -3,13 +3,13 @@ node_modules/
 .pnpm-store/
 
 # Next.js
-app/.next/
-app/out/
-app/next-env.d.ts
+.next/
+out/
+next-env.d.ts
 # Local development stores (evidence photos, documents) when Pinata is not configured
-app/.data/
-# Copied from node_modules by app/scripts/copy-maplibre-worker.mjs
-app/public/vendor/
+.data/
+# Copied from node_modules by scripts/copy-maplibre-worker.mjs
+public/vendor/
 *.tsbuildinfo
 
 # Foundry

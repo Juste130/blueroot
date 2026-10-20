@@ -2,7 +2,7 @@
 // of the audited contracts. Run after `forge build`: `npm run app abi`.
 import { readFileSync, writeFileSync } from "node:fs";
 
-const OUT = new URL("../../contracts/out/", import.meta.url);
+const OUT = new URL("../contracts/out/", import.meta.url);
 const TARGET = new URL("../src/lib/chain/abi.ts", import.meta.url);
 const CONTRACTS = ["ProjectRegistry", "Verification", "CarbonCredit", "Marketplace", "MockUSDC"];
 
