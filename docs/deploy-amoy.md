@@ -8,10 +8,10 @@ which has `ANCHOR_ROLE` and nothing else.
 
 | Role | Holds | POL needed |
 |---|---|---|
-| Deployer | Foundry keystore `deployer` | ~1 (deployment ≈ 10.3 M gas) |
-| Proponent | MetaMask | ~0.1 |
-| Validator A, Validator B | MetaMask | ~0.1 each |
-| Anchor | `ANCHOR_PRIVATE_KEY` on the server | ~0.2 |
+| Deployer | Foundry keystore `deployer` | ~0.5 (deployment ≈ 11.3 M gas at ~31 gwei) |
+| Proponent | MetaMask | ~0.05 |
+| Validator A, Validator B | MetaMask | ~0.02 each |
+| Anchor | `ANCHOR_PRIVATE_KEY` on the server | ~0.05 |
 | Admin (optional) | Safe multisig | 0 |
 
 ```bash
@@ -26,7 +26,7 @@ other wallets.
 
 ```bash
 cd contracts
-export POLYGON_AMOY_RPC_URL=https://rpc-amoy.polygon.technology
+export POLYGON_AMOY_RPC_URL=https://polygon-amoy.drpc.org   # the official RPC is unreachable from some networks
 export ETHERSCAN_API_KEY=...          # Etherscan V2 key, used for source verification
 export ADMIN_ADDRESS=0x...            # Safe; defaults to the deployer when unset
 export ANCHOR_ADDRESS=0x...
@@ -36,7 +36,9 @@ make deploy-amoy
 ```
 
 Polygon rejects transactions with a priority fee under 25 gwei, hence `--priority-gas-price 30gwei`.
-If Etherscan verification fails, retry it alone with `--verifier sourcify` (no key needed).
+Forge refuses to broadcast unless the balance covers its estimate plus a 30% margin (≈ 0.455 POL);
+`--gas-estimate-multiplier 110` narrows the margin when funds are tight. If Etherscan verification fails,
+retry it alone with `--verifier sourcify` (no key needed).
 
 The script writes `contracts/deployments/80002.json`; commit it, the app reads its addresses and start
 block from there. With a Safe admin, accept the admin role from the Safe after `ADMIN_DELAY`

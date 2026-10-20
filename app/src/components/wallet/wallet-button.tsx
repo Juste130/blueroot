@@ -46,7 +46,8 @@ export function WalletButton() {
           onClick={() => {
             const injected = connectors[0];
             if (typeof window !== "undefined" && !(window as { ethereum?: unknown }).ethereum) return setNoWallet(true);
-            if (injected) connect({ connector: injected });
+            // Asking for the app chain here folds the network switch into the connect prompt.
+            if (injected) connect({ connector: injected, chainId: chain.id });
           }}
           className={`${button} bg-tide text-paper hover:bg-tide-soft dark:bg-roots dark:text-tide`}
         >

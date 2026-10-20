@@ -19,7 +19,7 @@ export type Deployment = {
 };
 
 /** Testnets only (spec 10.6). The app is chain-agnostic: pick one with NEXT_PUBLIC_CHAIN_ID. */
-const SUPPORTED: Record<number, Chain> = { [baseSepolia.id]: baseSepolia, [polygonAmoy.id]: polygonAmoy, [foundry.id]: foundry };
+const SUPPORTED: Record<number, Chain> = { [baseSepolia.id]: baseSepolia, [polygonAmoy.id]: polygonAmoy, [foundry.id]: { ...foundry, name: "Anvil (local)" } };
 
 export const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? polygonAmoy.id);
 
