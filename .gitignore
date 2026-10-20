@@ -41,3 +41,9 @@ Thumbs.db
 
 # Foundry dependencies (pinned in contracts/Makefile, installed with `make deps`)
 contracts/lib/
+
+# Demo video: generated media and personal recordings stay local
+video/build/
+video/out/
+video/voice/
+video/clips/

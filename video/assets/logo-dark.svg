@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest">
+  <title id="t">BlueRoot</title>
+  <desc id="d">Hexagone contenant une mangrove stylisee dont les racines se terminent par des noeuds relies, symbole de preuves ancrees sur une chaine.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B3C5D"/>
+      <stop offset="1" stop-color="#0E5A73"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hexagone : cellule H3 -->
+  <polygon points="110,14 192,62 192,158 110,206 28,158 28,62" fill="url(#g)"/>
+  <polygon points="110,24 183,67 183,153 110,196 37,153 37,67" fill="none" stroke="#6EC6E8" stroke-width="2" opacity="0.55"/>
+
+  <!-- Feuillage -->
+  <g fill="#3FB37F">
+    <circle cx="110" cy="62" r="24"/>
+    <circle cx="86" cy="78" r="17"/>
+    <circle cx="134" cy="78" r="17"/>
+  </g>
+  <circle cx="101" cy="55" r="9" fill="#5FCF9C" opacity="0.85"/>
+
+  <!-- Tronc et racines en echasses -->
+  <g fill="none" stroke="#C9E4DE" stroke-linecap="round">
+    <path d="M110 90 L110 124" stroke-width="7"/>
+    <path d="M110 118 C 96 126, 80 138, 72 162" stroke-width="4.5"/>
+    <path d="M110 118 C 104 134, 98 146, 94 164" stroke-width="4.5"/>
+    <path d="M110 118 C 116 134, 122 146, 126 164" stroke-width="4.5"/>
+    <path d="M110 118 C 124 126, 140 138, 148 162" stroke-width="4.5"/>
+  </g>
+
+  <!-- Chaine de preuves -->
+  <polyline points="72,162 94,164 126,164 148,162" fill="none" stroke="#F2C14E" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="#F2C14E" stroke="#0B3C5D" stroke-width="2">
+    <circle cx="72" cy="162" r="5"/>
+    <circle cx="94" cy="164" r="5"/>
+    <circle cx="126" cy="164" r="5"/>
+    <circle cx="148" cy="162" r="5"/>
+  </g>
+
+  <!-- Eau -->
+  <path d="M62 174 q 12 -7 24 0 t 24 0 t 24 0 t 24 0" fill="none" stroke="#6EC6E8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M84 187 q 13 -6 26 0 t 26 0" fill="none" stroke="#6EC6E8" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Nom et signature -->
+  <text x="226" y="122" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-1">
+    <tspan fill="#F5F9F8">Blue</tspan><tspan fill="#3FB37F">Root</tspan>
+  </text>
+  <text x="230" y="158" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="600" letter-spacing="1.5" fill="#C9E4DE">BLUE CARBON PROOF REGISTRY</text>
+</svg>

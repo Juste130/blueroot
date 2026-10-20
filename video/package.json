@@ -1,0 +1,16 @@
+{
+  "name": "blueroot-video",
+  "private": true,
+  "type": "module",
+  "description": "Builds the hackathon demo video: slides, app captures, narration and final render.",
+  "scripts": {
+    "slides": "node slides.mjs",
+    "capture": "node capture.mjs",
+    "voice": "node voice.mjs",
+    "render": "node render.mjs",
+    "all": "node slides.mjs && node capture.mjs && node voice.mjs && node render.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "5.2.0"
+  }
+}
