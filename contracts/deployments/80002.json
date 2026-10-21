@@ -1,0 +1,10 @@
+{
+  "admin": "0x8d4f7cc817598278326AB17990e9cD8b70714Df5",
+  "carbonCredit": "0x5d9E0E9d9C1BEEBbD983633BB374Acaa4160F90f",
+  "chainId": 80002,
+  "marketplace": "0xac20b8353f017DCeeCd66ae5cAdAb6CCBfC0078d",
+  "paymentToken": "0x0b1ba45AB9C8540de69F824796Fbd7F9b3888fAf",
+  "projectRegistry": "0xF56e11F580Db0ecF94a64D03Ca10d276d1c90C3E",
+  "startBlock": 50718534,
+  "verification": "0x058Fab5c9D33f1595c32c8a60a0704a3373AaEA3"
+}
