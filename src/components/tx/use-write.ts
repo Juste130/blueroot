@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext } from "react";
 import { type Abi, type Address, type ContractFunctionArgs, type ContractFunctionName, encodeFunctionData, type Hex } from "viem";
 import { useConnection, usePublicClient, useWriteContract } from "wagmi";
+import { MIN_PRIORITY_FEE } from "@/lib/chain/config";
 
 /**
  * Sends a transaction whose gas the platform pays (Privy native sponsorship, embedded wallets only).
@@ -18,6 +19,14 @@ export const SponsorContext = createContext<{ canSponsor: (account: Address) => 
  * BlueRoot write emits an event) before reporting success.
  */
 export const sponsoredTargets = new Map<Hex, Address>();
+
+/** Fees from our RPC, priority fee raised to the chain floor; empty where the wallet's own choice is fine. */
+async function walletFees(client: NonNullable<ReturnType<typeof usePublicClient>>): Promise<{ maxFeePerGas?: bigint; maxPriorityFeePerGas?: bigint }> {
+  if (!MIN_PRIORITY_FEE) return {};
+  const { maxFeePerGas, maxPriorityFeePerGas } = await client.estimateFeesPerGas();
+  if (maxPriorityFeePerGas >= MIN_PRIORITY_FEE) return { maxFeePerGas, maxPriorityFeePerGas };
+  return { maxFeePerGas: maxFeePerGas - maxPriorityFeePerGas + MIN_PRIORITY_FEE, maxPriorityFeePerGas: MIN_PRIORITY_FEE };
+}
 
 type WriteRequest<abi extends Abi, name extends ContractFunctionName<abi, "nonpayable" | "payable">> = {
   address: Address;
@@ -47,7 +56,7 @@ export function useWrite() {
         sponsoredTargets.set(hash, call.address);
         return hash;
       }
-      return writeContractAsync(call as Parameters<typeof writeContractAsync>[0]);
+      return writeContractAsync({ ...call, ...(await walletFees(client)) } as Parameters<typeof writeContractAsync>[0]);
     },
     [account, client, sponsor, writeContractAsync],
   );

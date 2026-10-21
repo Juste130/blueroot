@@ -1,4 +1,4 @@
-import { type Address, type Chain, defineChain, keccak256, toHex } from "viem";
+import { type Address, type Chain, defineChain, keccak256, parseGwei, toHex } from "viem";
 import { baseSepolia, foundry, polygonAmoy } from "viem/chains";
 import { z } from "zod";
 
@@ -29,6 +29,12 @@ export const chain: Chain = (() => {
   const rpc = process.env.NEXT_PUBLIC_RPC_URL;
   return rpc ? defineChain({ ...known, rpcUrls: { default: { http: [rpc] } } }) : known;
 })();
+
+/**
+ * Polygon validators reject a priority fee under 25 gwei, while wallets such as MetaMask default to
+ * 1.5 gwei on Amoy. Writes from injected wallets carry explicit fees with this floor.
+ */
+export const MIN_PRIORITY_FEE = chain.id === polygonAmoy.id ? parseGwei("30") : 0n;
 
 export const explorerUrl = chain.blockExplorers?.default.url;
 
