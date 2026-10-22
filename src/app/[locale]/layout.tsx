@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t("title"),
     description: t("description"),
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-    alternates: { languages: { fr: "/fr", en: "/en" } },
+    alternates: { languages: { en: "/en", fr: "/fr", "x-default": "/en" } },
     manifest: "/manifest.webmanifest",
     openGraph: { title: t("title"), description: t("description"), siteName: "BlueRoot", locale },
   };
