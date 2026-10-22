@@ -8,11 +8,11 @@ import { NavLinks } from "./nav-links";
 
 export function MobileMenu() {
   const t = useTranslations("nav");
-  const [open, setOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
-
-  useEffect(() => setOpen(false), [pathname]);
+  // Opened for one page: navigating elsewhere closes the menu without an extra render.
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const open = openOn === pathname;
   useEffect(() => {
     const d = dialog.current;
     if (!d) return;
@@ -24,7 +24,7 @@ export function MobileMenu() {
     <div className="lg:hidden">
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => setOpenOn(pathname)}
         aria-haspopup="dialog"
         aria-expanded={open}
         className="flex size-10 items-center justify-center rounded-control border border-line text-ink hover:bg-roots/40"
@@ -36,8 +36,8 @@ export function MobileMenu() {
       </button>
       <dialog
         ref={dialog}
-        onClose={() => setOpen(false)}
-        onClick={(e) => e.target === dialog.current && setOpen(false)}
+        onClose={() => setOpenOn(null)}
+        onClick={(e) => e.target === dialog.current && setOpenOn(null)}
         aria-label={t("primary")}
         className="m-0 ml-auto h-dvh max-h-none w-[min(20rem,88vw)] max-w-none bg-surface p-0 text-ink backdrop:bg-tide/50"
       >
@@ -46,7 +46,7 @@ export function MobileMenu() {
             <LocaleSwitcher />
             <button
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={() => setOpenOn(null)}
               className="flex size-10 items-center justify-center rounded-control text-muted hover:bg-roots/40 hover:text-ink"
             >
               <span className="sr-only">{t("close")}</span>
@@ -56,7 +56,7 @@ export function MobileMenu() {
             </button>
           </div>
           <nav aria-label={t("primary")}>
-            <NavLinks orientation="column" onNavigate={() => setOpen(false)} />
+            <NavLinks orientation="column" onNavigate={() => setOpenOn(null)} />
           </nav>
         </div>
       </dialog>

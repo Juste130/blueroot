@@ -32,7 +32,9 @@ export function DrawMap({ onPolygon, cells, label }: { onPolygon: (ring: [number
   const [points, setPoints] = useState<[number, number][]>([]);
   const [closed, setClosed] = useState(false);
   const closedRef = useRef(closed);
-  closedRef.current = closed;
+  useEffect(() => {
+    closedRef.current = closed;
+  }, [closed]);
 
   useEffect(() => {
     let instance: MapLibreMap | undefined;

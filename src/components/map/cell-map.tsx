@@ -60,9 +60,11 @@ export function CellMap({
   const bounds = useMemo(() => boundsOf(zones.flatMap((z) => z.cells)), [zones]);
   const markers = useMemo(() => zoneMarkers(zones), [zones]);
   const dataRef = useRef(data);
-  dataRef.current = data;
   const markersRef = useRef(markers);
-  markersRef.current = markers;
+  useEffect(() => {
+    dataRef.current = data;
+    markersRef.current = markers;
+  }, [data, markers]);
 
   useEffect(() => {
     let cancelled = false;

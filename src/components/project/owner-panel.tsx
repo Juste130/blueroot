@@ -37,12 +37,13 @@ export function OwnerPanel({ projectId, owner, registeredAt, hasOpenClaim }: { p
   const [phase, setPhase] = useState<"idle" | "analyzing" | "ready" | "submitting" | "submitted" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
+  const [shownAt] = useState(() => Date.now());
 
   if (!address || !isAddressEqual(address, owner) || !d) return null;
 
   const periodStart = Math.max(registeredAt, Number(claimedUntil ?? 0));
   // A minute of margin: the contract refuses a period ending after the current block.
-  const periodEnd = Math.floor(Date.now() / 1000) - 60;
+  const endOf = (ms: number) => Math.floor(ms / 1000) - 60;
 
   async function call(url: string, body: unknown) {
     const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -55,7 +56,7 @@ export function OwnerPanel({ projectId, owner, registeredAt, hasOpenClaim }: { p
     setPhase("analyzing");
     setError(null);
     try {
-      setAnalysis((await call("/api/reports/analyze", { projectId, periodStart, periodEnd })) as unknown as Analysis);
+      setAnalysis((await call("/api/reports/analyze", { projectId, periodStart, periodEnd: endOf(Date.now()) })) as unknown as Analysis);
       setPhase("ready");
     } catch (e) {
       setError((e as Error).message);
@@ -83,7 +84,7 @@ export function OwnerPanel({ projectId, owner, registeredAt, hasOpenClaim }: { p
       <h2 id="owner-title" className="text-xl">
         {t("title")}
       </h2>
-      <p className="measure mt-2 text-sm text-muted">{t("intro", { from: formatDate(locale, periodStart), to: formatDate(locale, periodEnd) })}</p>
+      <p className="measure mt-2 text-sm text-muted">{t("intro", { from: formatDate(locale, periodStart), to: formatDate(locale, endOf(shownAt)) })}</p>
       <div className="mt-5 flex flex-wrap gap-3">
         <Link href="/field" className="rounded-control border border-line px-4 py-2.5 text-sm font-semibold hover:bg-roots/40">
           {t("addEvidence")}

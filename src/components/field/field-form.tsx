@@ -64,6 +64,7 @@ export function FieldForm({ projects }: { projects: FieldProject[] }) {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- state is set after awaiting the IndexedDB queue, not synchronously
     void flushQueue();
     window.addEventListener("online", flushQueue);
     return () => window.removeEventListener("online", flushQueue);

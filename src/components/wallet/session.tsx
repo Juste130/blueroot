@@ -49,6 +49,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
 
   // A session belongs to one wallet: switching account in the wallet ends it.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- signOut sets state after awaiting the logout request
     if (status === "signed-in" && address && connected && !isAddressEqual(address, connected)) void signOut();
   }, [connected, address, status, signOut]);
 
