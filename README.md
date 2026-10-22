@@ -3,7 +3,7 @@
 <p align="center"><em>Chaque racine compte, chaque preuve aussi. · Every root counts, so does every proof.</em></p>
 
 <p align="center">
-  <a href="TODO_NETLIFY_URL"><strong>Live demo (Polygon Amoy)</strong></a> ·
+  <a href="https://blueroot0.netlify.app"><strong>Live demo (Polygon Amoy)</strong></a> ·
   <a href="TODO_VIDEO_URL">Demo video</a> ·
   <a href="docs/BlueRoot-cahier-des-charges-et-architecture.md">Specification</a> ·
   IEEE ClimateChain 2026, track: Carbon markets and emissions transparency
@@ -32,7 +32,7 @@ BlueRoot is an open-source proof registry: **register a zone, prove it (field + 
 
 ## Try it
 
-**Online (Polygon Amoy).** Open the [live demo](TODO_NETLIFY_URL): the map shows the three real mangrove zones on Sentinel-2 imagery, their NDVI curves and the on-chain registry. Each figure on screen comes from contract events or from a file whose sha256 is anchored on-chain. You can sign in with a wallet (MetaMask on Amoy) or with an email (Privy embedded wallet, gas sponsored).
+**Online (Polygon Amoy).** Open the [live demo](https://blueroot0.netlify.app): the map shows the three real mangrove zones on Sentinel-2 imagery, their NDVI curves and the on-chain registry. Each figure on screen comes from contract events or from a file whose sha256 is anchored on-chain. You can sign in with a wallet (MetaMask on Amoy) or with an email (Privy embedded wallet, gas sponsored).
 
 **Full lifecycle (local chain, 2 minutes).** The whole cycle, from registration to certificate, runs against the real contracts on Anvil. It registers the 3 zones, rejects a double-counting attempt, anchors a file, collects two approvals and finalizes it (credits plus buffer), lists 1,000 credits, buys 600 with the enforced split, and retires 250 with a public certificate:
 

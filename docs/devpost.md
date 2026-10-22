@@ -1,6 +1,6 @@
 # Devpost submission: BlueRoot
 
-Copy each section into the matching Devpost field. Replace the `TODO_` links before submitting.
+Copy each section into the matching Devpost field. Replace `TODO_VIDEO_URL` before submitting.
 
 ## Project name
 
@@ -73,7 +73,7 @@ solidity, openzeppelin, foundry, polygon, ethereum, erc-1155, next.js, react, ty
 
 ## Try it out links
 
-- Live demo: TODO_NETLIFY_URL
+- Live demo: https://blueroot0.netlify.app
 - Source code: https://github.com/Juste130/blueroot
 - Demo video: TODO_VIDEO_URL
 
