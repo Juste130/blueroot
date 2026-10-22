@@ -53,12 +53,27 @@ NEXT_PUBLIC_CHAIN_ID=80002
 SESSION_SECRET=...                    # openssl rand -base64 48
 PINATA_JWT=...
 PINATA_GATEWAY=....mypinata.cloud
-ANTHROPIC_API_KEY=...
+GEMINI_API_KEY=...                    # free key from aistudio.google.com, or ANTHROPIC_API_KEY
 ANCHOR_PRIVATE_KEY=0x...              # the anchor wallet only
 ANCHOR_API_SECRET=...                 # openssl rand -base64 48
 ```
 
-The same variables go into the hosting provider's environment settings.
+The AI report uses Claude when `ANTHROPIC_API_KEY` is set, Gemini otherwise. The provider and the
+exact model are recorded in each report.
+
+### Netlify
+
+`netlify.toml` sets the build (Netlify adds its Next.js runtime automatically). In the Netlify UI:
+
+1. **Add new project > Import from Git**, pick the repository; the build settings come from `netlify.toml`.
+2. **Project configuration > Environment variables**: the variables above, plus
+   `NEXT_PUBLIC_RPC_URL` and `NEXT_PUBLIC_SITE_URL=https://<site>.netlify.app`, scoped to Builds and
+   Functions. Mark the server values (keys, JWT, secrets) as secret.
+3. Redeploy after any variable change: values are injected at build time.
+4. With Privy, add the Netlify domain to the allowed domains.
+
+Documents and evidence go to Pinata: the function file system is read-only, so `PINATA_JWT` is
+required in production.
 
 ## 4. Privy (optional: email sign-in and sponsored gas)
 

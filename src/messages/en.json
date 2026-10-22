@@ -385,6 +385,7 @@
       "ai_output_rejected": "The AI answer did not match the expected format and was rejected. Try again.",
       "anchoring_unavailable": "The anchoring service is not configured on this server.",
       "ai_unavailable": "AI analysis is not configured on this server.",
+      "ai_failed": "The AI service did not answer (quota reached or unavailable). Try again in a minute.",
       "invalid_token": "This report has expired. Generate a new one.",
       "unknown": "The operation failed. Try again."
     }

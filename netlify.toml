@@ -1,0 +1,9 @@
+# Netlify detects Next.js and adds its runtime (@netlify/plugin-nextjs) on its own: no adapter to pin.
+# Secrets and NEXT_PUBLIC_* values go in the Netlify UI (Project configuration > Environment variables),
+# scoped to Builds and Functions; see docs/deploy-amoy.md. Any change needs a redeploy.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"

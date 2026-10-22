@@ -46,7 +46,7 @@ export async function buildReport(projectId: number, periodStart: number, period
   const items = evidence.map((e) => ({ sha256: e.id, cell: e.cell, capturedAt: e.capturedAt, flags: e.flags }));
 
   // The model sees facts and check results only: no photo, no name, no wallet address.
-  const { assessment, model } = await assess({
+  const { assessment, model, provider } = await assess({
     project: { cells: project.cells.length, areaHa: Math.round(project.areaHa * 10) / 10, place: project.place },
     period: { start: new Date(periodStart * 1000).toISOString(), end: new Date(periodEnd * 1000).toISOString() },
     satellite: { ...satellite, monthly: s.monthly },
@@ -61,7 +61,7 @@ export async function buildReport(projectId: number, periodStart: number, period
     period: { start: periodStart, end: periodEnd },
     satellite,
     evidence: { ...stats, items, score: field },
-    ai: { provider: "anthropic", model, promptVersion: PROMPT_VERSION, generatedAt: new Date().toISOString(), assessment },
+    ai: { provider, model, promptVersion: PROMPT_VERSION, generatedAt: new Date().toISOString(), assessment },
     scores: {
       ...scores,
       combined: combinedScore(scores),

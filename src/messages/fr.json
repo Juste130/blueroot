@@ -385,6 +385,7 @@
       "ai_output_rejected": "La réponse de l'IA ne respectait pas le format attendu ; elle a été rejetée. Réessayez.",
       "anchoring_unavailable": "Le service d'ancrage n'est pas configuré sur ce serveur.",
       "ai_unavailable": "L'analyse IA n'est pas configurée sur ce serveur.",
+      "ai_failed": "Le service d'IA n'a pas répondu (quota atteint ou indisponible). Réessayez dans une minute.",
       "invalid_token": "Ce rapport a expiré. Générez-en un nouveau.",
       "unknown": "L'opération a échoué. Réessayez."
     }

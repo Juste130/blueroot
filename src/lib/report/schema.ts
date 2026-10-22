@@ -64,7 +64,7 @@ export const ReportSchema = z
     ai: z
       .object({
         /** "fixture": local test data written by scripts/demo.ts, never produced by an AI and never anchorable by the server. */
-        provider: z.enum(["anthropic", "fixture"]),
+        provider: z.enum(["anthropic", "gemini", "fixture"]),
         model: z.string(),
         promptVersion: z.string(),
         generatedAt: z.string().datetime(),

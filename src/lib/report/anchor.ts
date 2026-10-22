@@ -26,7 +26,7 @@ export async function anchorReport(reportHash: Hex): Promise<{ txHash: Hex }> {
   const doc = await getJson(reportHash, (v) => ReportSchema.parse(v));
   if (!doc) throw new ApiError(404, "unknown_report");
   const r = doc.data;
-  if (r.ai.provider !== "anthropic") throw new ApiError(422, "not_an_ai_report");
+  if (r.ai.provider === "fixture") throw new ApiError(422, "not_an_ai_report");
   if (combinedScore(r.scores) !== r.scores.combined) throw new ApiError(422, "score_mismatch");
   if (r.scores.combined < THRESHOLD) throw new ApiError(422, "below_threshold");
   // The satellite hash must be a series this server can serve and that anyone can re-hash.

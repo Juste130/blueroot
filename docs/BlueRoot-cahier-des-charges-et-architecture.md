@@ -157,11 +157,11 @@ Le facteur et les poids sont des hypothèses de démonstration, présentés comm
 | Réseau | Testnet EVM (à choisir selon faucet disponible) | Déploiement de la démo |
 | Application | Next.js (App Router), TypeScript, wagmi et viem | Interface et route handlers (pas de backend séparé) |
 | Cartographie | MapLibre ou Leaflet, h3-js | Dessin des zones et cellules |
-| IA | API Claude appelée côté serveur | Rapport de vérification consultatif |
+| IA | API Gemini (ou Claude) appelée côté serveur | Rapport de vérification consultatif |
 | Stockage fichiers | Pinata (IPFS public et privé) | Rapports publics, preuves brutes privées |
 | Base d'index (optionnelle) | Postgres hébergé et Drizzle | Lecture rapide de l'historique |
 | Données satellite | Script Python ou Node, JSON versionnés | NDVI pré-calculé |
-| Hébergement | Vercel | Un seul déploiement |
+| Hébergement | Netlify | Un seul déploiement |
 
 ### 7.2 Flux principal
 
