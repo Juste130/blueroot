@@ -222,9 +222,9 @@ async function main() {
     false,
   );
   const retired = await send(buyer, { address: d.carbonCredit, abi: carbonCreditAbi, functionName: "retire", args: [fin.tokenId, 250n, buyer.address, reasonHash] } as never);
-  log("250 credits retired", `certificate: http://localhost:3000/fr/certificates/${retired.transactionHash}`);
+  log("250 credits retired", `certificate: http://localhost:3000/en/certificates/${retired.transactionHash}`);
 
-  console.log("\nDone. Start the app with NEXT_PUBLIC_CHAIN_ID=31337 and open http://localhost:3000/fr");
+  console.log("\nDone. Start the app with NEXT_PUBLIC_CHAIN_ID=31337 and open http://localhost:3000/en");
   console.log(`Wallets (Anvil test mnemonic): proponent ${proponent.address}, validators ${validatorA.address} / ${validatorB.address}, buyer ${buyer.address}`);
 }
 
