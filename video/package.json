@@ -7,8 +7,10 @@
     "slides": "node slides.mjs",
     "capture": "node capture.mjs",
     "voice": "node voice.mjs",
+    "cut": "node cut.mjs",
+    "music": "node music.mjs",
     "render": "node render.mjs",
-    "all": "node slides.mjs && node capture.mjs && node voice.mjs && node render.mjs"
+    "all": "node slides.mjs && node voice.mjs && node cut.mjs && node music.mjs && node capture.mjs && node render.mjs"
   },
   "dependencies": {
     "ffmpeg-static": "5.2.0"

@@ -28,12 +28,17 @@
   .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
   .hexbg { position: absolute; right: -120px; top: -60px; width: 980px; height: 1200px; opacity: .16; pointer-events: none; }
   .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 88px; }
-  .card { background: var(--surface); border: 2px solid var(--line); border-radius: 20px; padding: 40px 40px 44px; }
+  .card { color: var(--tide); background: var(--surface); border: 2px solid var(--line); border-radius: 20px; padding: 40px 40px 44px; }
   .card h3 { font-size: 38px; font-weight: 800; margin-top: 18px; letter-spacing: -.01em; }
   .card p { font-size: 27px; line-height: 1.42; color: var(--muted); margin-top: 14px; }
   .icon { width: 68px; height: 68px; border-radius: 16px; display: grid; place-items: center; font-size: 34px; font-weight: 800; }
   .chip { display: inline-block; font-size: 22px; font-weight: 600; padding: 6px 14px; border-radius: 6px; background: var(--roots); color: var(--tide); }
   .chip.gold { background: var(--gold); color: var(--tide-deep); }
+  /* Full-bleed photo under a tide-coloured veil; credit top right (the bottom is for captions). */
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .veil { position: absolute; inset: 0; z-index: 0; }
+  .slide > :not(.photo):not(.veil):not(.hexbg) { position: relative; z-index: 1; }
+  .credit { position: absolute !important; top: 28px; right: 36px; font-size: 17px; color: rgba(245,249,248,.78); text-shadow: 0 1px 4px rgba(0,0,0,.85); }
   .hex { clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); }
 </style>
 </head>
@@ -45,14 +50,20 @@
 </template>
 
 <!-- s01 Title -->
-<section class="slide dark" id="s01" data-hex>
+<section class="slide dark" id="s01">
+  <img class="photo" src="assets/photos/mono.jpg" alt="" style="object-position:50% 70%; transform:scale(1.38); transform-origin:0% 75%">
+  <div class="veil" style="background:linear-gradient(90deg, rgba(7,42,66,.94) 0%, rgba(7,42,66,.78) 45%, rgba(7,42,66,.15) 100%)"></div>
+  <div class="credit">Mono river, Benin · Photo Ji-Elle, CC BY-SA 4.0</div>
   <img src="assets/logo-dark.svg" alt="" style="width:560px; margin-top:40px">
   <h1 style="font-size:104px; margin-top:64px; max-width:1350px">Verifiable credits for community mangrove restoration in Benin</h1>
   <p class="lede" style="margin-top:auto; font-size:30px">IEEE ClimateChain Hackathon 2026 · Carbon Markets &amp; Emissions Transparency</p>
 </section>
 
 <!-- s02 Problem -->
-<section class="slide" id="s02">
+<section class="slide dark" id="s02" style="justify-content:center">
+  <img class="photo" src="assets/photos/aheme-panorama.jpg" alt="">
+  <div class="veil" style="background:linear-gradient(180deg, rgba(7,42,66,.88) 0%, rgba(7,42,66,.72) 55%, rgba(7,42,66,.9) 100%)"></div>
+  <div class="credit">Mangroves of Lake Ahémé, Benin · Photo Dagnon, CC BY-SA 4.0</div>
   <div class="kicker">The problem</div>
   <h2>Mangroves need finance.<br>Carbon markets need trust.</h2>
   <div class="grid3">
@@ -98,7 +109,9 @@
 </section>
 
 <!-- s07 Field evidence -->
-<section class="slide" id="s07">
+<section class="slide" id="s07" style="padding-left:820px">
+  <img src="assets/photos/racines.jpg" alt="" style="position:absolute; left:0; top:0; width:700px; height:1080px; object-fit:cover">
+  <div class="credit" style="left:24px; right:auto">Mangrove roots and seedling, Benin · Photo Kijoe, CC BY-SA 4.0</div>
   <div class="kicker">Field evidence</div>
   <h2>Checked, then anonymised</h2>
   <div class="pipe">
@@ -109,9 +122,8 @@
     <div><i>5</i><b>Metadata removed</b><span>no location or device kept</span></div>
   </div>
   <style>
-    .pipe { display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; margin-top:88px; }
-    .pipe div { position:relative; background:var(--surface); border:2px solid var(--line); border-radius:18px; padding:34px 28px 38px; display:flex; flex-direction:column; gap:12px; }
-    .pipe div:not(:last-child)::after { content:"→"; position:absolute; right:-24px; top:50%; transform:translateY(-50%); font-size:30px; color:var(--mangrove-ink); font-weight:800; z-index:1; }
+    .pipe { display:flex; flex-direction:column; gap:14px; margin-top:52px; }
+    .pipe div { display:grid; grid-template-columns:54px 330px 1fr; align-items:center; gap:24px; background:var(--surface); border:2px solid var(--line); border-radius:16px; padding:16px 26px; }
     .pipe i { font-style:normal; width:54px; height:54px; display:grid; place-items:center; background:var(--mangrove); color:#fff; font-weight:800; font-size:26px; clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); }
     .pipe b { font-size:31px; font-weight:800; }
     .pipe span { font-size:24px; line-height:1.4; color:var(--muted); }
@@ -198,13 +210,17 @@
 </section>
 
 <!-- s14 Close -->
-<section class="slide dark" id="s14" data-hex style="justify-content:center">
+<section class="slide dark" id="s14" style="justify-content:center">
+  <img class="photo" src="assets/photos/lagune.jpg" alt="" style="object-position:50% 0%">
+  <div class="veil" style="background:linear-gradient(90deg, rgba(7,42,66,.95) 0%, rgba(7,42,66,.8) 50%, rgba(7,42,66,.35) 100%)"></div>
+  <div class="credit">Lagoon and mangrove, Benin · Photo Padonou Dotou, CC BY-SA 4.0</div>
   <img src="assets/logo-dark.svg" alt="" style="width:520px">
   <h1 style="margin-top:48px">Mangroves you can verify.</h1>
   <div class="mono" style="margin-top:56px; display:flex; flex-direction:column; gap:18px; font-size:32px; color:var(--roots)">
     <div><span style="color:var(--mangrove)">code&nbsp;</span> <span data-repo></span></div>
     <div><span style="color:var(--mangrove)">demo&nbsp;</span> <span data-demo></span></div>
   </div>
+  <p style="margin-top:64px; font-size:19px; line-height:1.5; color:rgba(201,228,222,.8); max-width:1150px">Photos from Wikimedia Commons, CC BY-SA 4.0: Ji-Elle (Mono river), Dagnon (Lake Ahémé), Kijoe (mangrove roots), Padonou Dotou (lagoon). Music generated for this video.</p>
 </section>
 
 <!-- Placeholder for capture scenes until the app is filmed -->

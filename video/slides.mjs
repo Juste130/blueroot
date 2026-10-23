@@ -1,4 +1,4 @@
-// Renders every slide (and a placeholder card for each capture scene) to build/slides/<id>.png.
+// Renders every slide (and a placeholder card for each filmed or recorded scene) to build/slides/<id>.png.
 // REPO_URL and DEMO_URL fill the closing slide.
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -21,14 +21,14 @@ try {
 
   for (const scene of scenes) {
     let id = scene.id;
-    if (scene.kind === "capture") {
+    if (scene.kind !== "slide") {
       await page.evaluate((t) => (document.querySelector("#pending [data-title]").textContent = t), scene.title);
       id = "pending";
     }
     const el = page.locator(`#${id}`);
     if (!(await el.count())) throw new Error(`slides.html has no section #${id}`);
     await el.screenshot({ path: join(out, `${scene.id}.png`) });
-    console.log(`slide ${scene.id}${scene.kind === "capture" ? " (placeholder)" : ""}`);
+    console.log(`slide ${scene.id}${scene.kind !== "slide" ? " (placeholder)" : ""}`);
   }
 } finally {
   await browser.close();
