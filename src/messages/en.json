@@ -24,6 +24,7 @@
     "signOut": "Sign out",
     "disconnect": "Disconnect wallet",
     "wrongNetwork": "Switch to {network}",
+    "switchFailed": "The wallet did not switch. Select {network} in the wallet itself, or sign out.",
     "noWallet": "No wallet found in this browser. Install MetaMask, Rabby or Coinbase Wallet, or open this page in your mobile wallet's browser.",
     "signedInAs": "Signed in as {address}",
     "roles": "Roles",

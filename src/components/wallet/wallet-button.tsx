@@ -18,7 +18,7 @@ export function WalletButton() {
   const { mutate: connect, isPending: connecting } = useConnect();
   const connectors = useConnectors();
   const { mutate: disconnect } = useDisconnect();
-  const { mutate: switchChain, isPending: switching } = useSwitchChain();
+  const { mutate: switchChain, isPending: switching, isError: switchFailed } = useSwitchChain();
   const session = useSession();
   const privy = usePrivyAuth();
   const { roles } = useRoles(session.address);
@@ -26,6 +26,16 @@ export function WalletButton() {
   const [noWallet, setNoWallet] = useState(false);
   const panelId = useId();
   const root = useRef<HTMLDivElement>(null);
+  // A Privy embedded wallet never needs the network check: its sponsored transactions and its sign-in
+  // message name the app chain explicitly, whatever network the wallet reports.
+  const wrongChain = isConnected && chainId !== chain.id && !privy?.embedded;
+
+  const signOut = () => {
+    setOpen(false);
+    void session.signOut();
+    if (privy) void privy.logout();
+    else disconnect();
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -80,11 +90,22 @@ export function WalletButton() {
     );
   }
 
-  if (chainId !== chain.id) {
+  if (wrongChain) {
+    // External wallet on another network: offer the switch, and always a way out.
     return (
-      <button type="button" disabled={switching} onClick={() => switchChain({ chainId: chain.id })} className={`${button} bg-bad text-white`}>
-        {t("wrongNetwork", { network: chain.name })}
-      </button>
+      <div className="relative flex items-center gap-2">
+        <button type="button" disabled={switching} onClick={() => switchChain({ chainId: chain.id })} className={`${button} bg-bad text-white`}>
+          {t("wrongNetwork", { network: chain.name })}
+        </button>
+        <button type="button" onClick={signOut} className={`${button} border border-line text-muted hover:bg-roots/40 hover:text-ink`}>
+          {t("signOut")}
+        </button>
+        {switchFailed ? (
+          <p role="alert" className="absolute right-0 top-12 z-50 w-72 rounded-panel border border-bad/30 bg-surface p-3 text-sm text-bad shadow-lg">
+            {t("switchFailed", { network: chain.name })}
+          </p>
+        ) : null}
+      </div>
     );
   }
 
@@ -144,10 +165,7 @@ export function WalletButton() {
           <div className="mt-4 flex flex-col gap-2 border-t border-line pt-3">
             <button
               type="button"
-              onClick={() => {
-                void session.signOut();
-                if (privy) void privy.logout();
-              }}
+              onClick={signOut}
               className="rounded-control px-2 py-1.5 text-left font-medium hover:bg-roots/40"
             >
               {t("signOut")}

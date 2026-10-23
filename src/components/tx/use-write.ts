@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext } from "react";
 import { type Abi, type Address, type ContractFunctionArgs, type ContractFunctionName, encodeFunctionData, type Hex } from "viem";
 import { useConnection, usePublicClient, useWriteContract } from "wagmi";
-import { MIN_PRIORITY_FEE } from "@/lib/chain/config";
+import { MIN_PRIORITY_FEE, chain } from "@/lib/chain/config";
 
 /**
  * Sends a transaction whose gas the platform pays (Privy native sponsorship, embedded wallets only).
@@ -41,7 +41,8 @@ type WriteRequest<abi extends Abi, name extends ContractFunctionName<abi, "nonpa
  */
 export function useWrite() {
   const { address: account } = useConnection();
-  const client = usePublicClient();
+  // Always the app chain, whatever network the wallet reports.
+  const client = usePublicClient({ chainId: chain.id });
   const sponsor = useContext(SponsorContext);
   const { mutateAsync: writeContractAsync } = useWriteContract();
 

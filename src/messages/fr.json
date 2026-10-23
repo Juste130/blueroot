@@ -24,6 +24,7 @@
     "signOut": "Se déconnecter",
     "disconnect": "Déconnecter le wallet",
     "wrongNetwork": "Passer sur {network}",
+    "switchFailed": "Le wallet n'a pas changé de réseau. Choisissez {network} dans le wallet lui-même, ou déconnectez-vous.",
     "noWallet": "Aucun wallet détecté dans ce navigateur. Installez MetaMask, Rabby ou Coinbase Wallet, ou ouvrez cette page dans le navigateur de votre wallet mobile.",
     "signedInAs": "Connecté en tant que {address}",
     "roles": "Rôles",
