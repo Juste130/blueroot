@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://blueroot0.netlify.app"><strong>Live demo (Polygon Amoy)</strong></a> ·
-  <a href="TODO_VIDEO_URL">Demo video</a> ·
+  <a href="https://youtu.be/Xbzt9ZcUTaU">Demo video</a> ·
   <a href="docs/BlueRoot-cahier-des-charges-et-architecture.md">Specification</a> ·
   IEEE ClimateChain 2026, track: Carbon markets and emissions transparency
 </p>
