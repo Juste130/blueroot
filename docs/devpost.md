@@ -8,7 +8,7 @@ BlueRoot
 
 ## Elevator pitch (200 characters max)
 
-An open-source proof registry that lets mangrove-restoring communities in Benin earn verifiable credits: no double counting, two-source evidence, human validation and a contract-enforced community share.
+An open-source registry that lets mangrove-restoring communities in Benin earn verifiable credits: no double counting, two-source evidence, human validation and a contract-enforced community share.
 
 ## About the project
 
