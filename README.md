@@ -135,7 +135,7 @@ C'est un projet de démonstration sur testnet. Les crédits sont des hectares-an
 
 ## Credits
 
-Contains modified Copernicus Sentinel data. Zone polygons © OpenStreetMap contributors (ODbL). Built by HOUEZO Sènami Juste for the IEEE ClimateChain 2026 hackathon.
+Contains modified Copernicus Sentinel data. Zone polygons © OpenStreetMap contributors (ODbL). Photos in the demo video, from Wikimedia Commons under CC BY-SA 4.0: Padonou Dotou, Ji-Elle, Dagnon, Kijoe and EGOUNLETY Eudoxie ([details](video/assets/photos/credits.json)). Built by HOUEZO Sènami Juste for the IEEE ClimateChain 2026 hackathon.
 
 ## License
 
