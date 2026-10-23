@@ -35,8 +35,9 @@ export const scenes = [
     id: "s04",
     kind: "capture",
     title: "Live registry",
+    live: true,
     narration:
-      "This is the live registry on Polygon Amoy. The demonstration zones are real mapped mangroves in Grand-Popo and Ouidah. Each zone is stored on chain as hexagonal H3 cells of about one hectare.",
+      "This is the live registry on Polygon Amoy. Three real mapped mangrove zones in Grand-Popo and Ouidah are registered on chain, as hexagonal H3 cells of about one hectare. The proponent signed in with an email, and the platform paid the gas.",
     /** @param {Act} act @param {number} s */
     async capture(act, s) {
       await act.goto("/en");
@@ -50,6 +51,7 @@ export const scenes = [
     id: "s05",
     kind: "capture",
     title: "Project page",
+    live: true,
     narration:
       "A project page shows its cells, its community wallet and its satellite series: Sentinel-2 vegetation index, computed only over the claimed cells, compared season to season so that Harmattan dust is not mistaken for loss. We never claim tonnes of CO2. One credit is one hundredth of a verified hectare-year.",
     /** @param {Act} act @param {number} s */
@@ -66,7 +68,7 @@ export const scenes = [
     kind: "slide",
     title: "Double counting refused",
     narration:
-      "What if a second project tries to claim a cell that is already registered? The transaction reverts with CellAlreadyClaimed. Not a policy, not a manual review: the contract itself refuses double counting.",
+      "What if a second project tries to claim a cell that is already registered? The app warns before anything is signed, and the contract itself would revert with CellAlreadyClaimed. Not a policy, not a manual review: double counting is refused by code.",
   },
   {
     id: "s07",
@@ -80,7 +82,7 @@ export const scenes = [
     kind: "capture",
     title: "AI report",
     narration:
-      "Claude then reviews the whole file: photo checks, coverage of the cells and the satellite trend. It writes a structured report in French for the communities and in English for buyers. It is advisory only. The report's hash is anchored on chain, so validators approve exactly what was analysed.",
+      "To show the whole cycle in a few minutes, the next scenes run the same contracts on a local chain, with a sample report labelled as such. In production, an AI model reviews the whole file: photo checks, coverage of the cells and the satellite trend. It writes a structured report in French for the communities and in English for buyers. It is advisory only. The report's hash is anchored on chain, so validators approve exactly what was analysed.",
     /** @param {Act} act @param {number} s */
     async capture(act, s) {
       await act.goto("/en/projects/1");
@@ -133,14 +135,14 @@ export const scenes = [
     kind: "slide",
     title: "Architecture",
     narration:
-      "Under the hood: four Solidity contracts built with Foundry and OpenZeppelin, covered by seventy-five unit, fuzz and invariant tests. A reproducible satellite pipeline whose output hash is anchored on chain. One Next.js app with wallet sign-in, IPFS for public documents, and Claude for the report.",
+      "Under the hood: four Solidity contracts built with Foundry and OpenZeppelin, covered by seventy-five unit, fuzz and invariant tests. A reproducible satellite pipeline whose output hash is anchored on chain. One Next.js app with wallet sign-in, IPFS for public documents, and Gemini or Claude for the report.",
   },
   {
     id: "s13",
     kind: "slide",
     title: "What comes next",
     narration:
-      "Next, we want cooperatives to join without ever holding crypto, with sign-in by phone number and fees paid by the platform. We will calibrate the scoring with mangrove experts and local partners, then open more sites along the Gulf of Guinea.",
+      "Cooperatives can already join without holding crypto: email sign-in, fees paid by the platform. Next, we will run field pilots with local partners, calibrate the scoring with mangrove experts, move administration to a multisig, and open more sites along the Gulf of Guinea.",
   },
   {
     id: "s14",

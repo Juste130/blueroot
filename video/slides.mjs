@@ -7,7 +7,7 @@ import { scenes } from "./scenes.mjs";
 
 const out = dir("slides");
 const repo = process.env.REPO_URL ?? "github.com/Juste130/blueroot";
-const demo = process.env.DEMO_URL ?? "blueroot demo on Polygon Amoy";
+const demo = process.env.DEMO_URL ?? "blueroot0.netlify.app";
 
 const browser = await launch();
 try {
