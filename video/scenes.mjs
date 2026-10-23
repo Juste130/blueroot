@@ -4,6 +4,7 @@
 //   1. clips/<id>.(mp4|mov|webm|mkv)   your own screen recording (MetaMask flows)
 //   2. build/captures/<id>.webm        filmed by capture.mjs from the running app
 //   3. build/slides/<id>.png           rendered by slides.mjs (capture scenes get a placeholder card)
+// A slide scene may open on `photos` (assets/photos/<file>.jpg, Wikimedia Commons, credited on screen).
 // Narration: voice/<id>.(wav|mp3|m4a) recorded by you, else a synthetic draft from voice.mjs.
 
 /** @typedef {{ goto(path: string): Promise<void>; hold(s: number): Promise<void>; scrollTo(fraction: number, s: number): Promise<void>;
@@ -13,6 +14,7 @@ export const scenes = [
   {
     id: "s01",
     kind: "slide",
+    photos: [{ file: "lagune", seconds: 4.5 }],
     title: "Title",
     narration:
       "This is BlueRoot: an open registry that turns community mangrove restoration in southern Benin into credits that anyone can verify.",
@@ -20,6 +22,7 @@ export const scenes = [
   {
     id: "s02",
     kind: "slide",
+    photos: [{ file: "mono", seconds: 5 }, { file: "aheme-panorama", seconds: 5 }],
     title: "The problem",
     narration:
       "Mangroves are among the most carbon-rich forests on Earth, and coastal villages in Benin replant them. Yet they rarely reach climate finance, because the market has a trust problem: the same land sold twice, verification reports nobody can check, and communities that see little of the money.",
@@ -73,6 +76,7 @@ export const scenes = [
   {
     id: "s07",
     kind: "slide",
+    photos: [{ file: "racines", seconds: 4.5 }],
     title: "Field evidence",
     narration:
       "Field agents upload geotagged photos from their phones. The server checks that each photo was taken inside the zone and during the period, rejects near-duplicates, then removes all metadata before storing it, so no one's exact location or device is exposed.",
@@ -140,6 +144,7 @@ export const scenes = [
   {
     id: "s13",
     kind: "slide",
+    photos: [{ file: "grand-popo", seconds: 5 }],
     title: "What comes next",
     narration:
       "Cooperatives can already join without holding crypto: email sign-in, fees paid by the platform. Next, we will run field pilots with local partners, calibrate the scoring with mangrove experts, move administration to a multisig, and open more sites along the Gulf of Guinea.",
