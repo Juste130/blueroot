@@ -26,7 +26,9 @@ export const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? polygonAmoy.i
 export const chain: Chain = (() => {
   const known = SUPPORTED[CHAIN_ID];
   if (!known) throw new Error(`Unsupported NEXT_PUBLIC_CHAIN_ID ${CHAIN_ID} (use 80002, 84532 or 31337)`);
-  const rpc = process.env.NEXT_PUBLIC_RPC_URL;
+  // The RPC override targets the public network: a local Anvil chain always uses its own node, so an
+  // Amoy URL left in .env.local cannot send the indexer scanning another chain from block 0.
+  const rpc = CHAIN_ID === foundry.id ? undefined : process.env.NEXT_PUBLIC_RPC_URL;
   return rpc ? defineChain({ ...known, rpcUrls: { default: { http: [rpc] } } }) : known;
 })();
 
