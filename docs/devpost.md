@@ -62,6 +62,7 @@ Climate data is messy in very local ways: dust, tides, clouds, tile edges. The v
 
 ### What's next for BlueRoot
 
+- **Beyond Benin.** Nothing in the contracts or the satellite pipeline is specific to Benin: H3 cells cover the globe, Sentinel-2 covers every coastline, and the pipeline handles any UTM zone. Only the season windows and the score weights are local settings. The natural next step is the Gulf of Guinea mangrove belt (Togo, Nigeria, Ghana), then Senegal's Saloum delta and Guinea-Bissau, each with a local partner organization and local validators, because trust in the field cannot be deployed by code alone.
 - Field pilots with local communities and NGOs in Grand-Popo and Ouidah, to calibrate the weights, thresholds and buffer rate with mangrove experts.
 - Validator reputation, and reversal reports that draw on the buffer pool when mangrove loss is detected.
 - A multisig for administration, an external audit, then a mainnet deployment.

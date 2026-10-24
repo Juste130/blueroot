@@ -100,6 +100,10 @@ Deployment block: 50718534. Source of truth: [contracts/deployments/80002.json](
 - **AI:** fixed system prompt, submitted content wrapped as data, schema-constrained output, model and date stored in the report. The AI never sees a photo.
 - **Anchoring key:** holds only `ANCHOR_ROLE`; the server recomputes the score, threshold and satellite hash before signing.
 
+## Beyond Benin
+
+Nothing in the contracts or the satellite pipeline is specific to Benin: H3 cells cover the globe, Sentinel-2 covers every coastline, and the pipeline handles any UTM zone, north or south. Only the season windows (here March–May, outside the Harmattan) and the score weights are local settings. The natural next step is the Gulf of Guinea mangrove belt (Togo, Nigeria, Ghana), then Senegal's Saloum delta and Guinea-Bissau, each with a local partner organization and local validators, because trust in the field cannot be deployed by code alone.
+
 ## Honest limits
 
 - Credits measure **verified hectare-years of mangrove**. NDVI measures vegetation vigour, not carbon, so BlueRoot never claims tonnes of CO2.
